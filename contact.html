@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work With Me — Deals Take Flight</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.revealed { opacity: 1; transform: none; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 80px; }
+    .service-card { background: var(--white); padding: 36px 28px; border: 1px solid var(--light-border); transition: var(--transition); position: relative; overflow: hidden; border-radius: 4px; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,63,110,0.1); }
+    .service-card.featured { background: var(--near-black); border-color: var(--navy); }
+    .service-card.featured::before { content: 'Most Popular'; position: absolute; top: 16px; right: 16px; background: var(--navy); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--cornflower); border-radius: 2px; }
+    .service-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+    .service-name { font-family: var(--font-display); font-size: 20px; margin-bottom: 10px; color: var(--near-black); }
+    .service-card.featured .service-name { color: var(--white); }
+    .service-desc { font-size: 14px; color: var(--mid-gray); line-height: 1.7; margin-bottom: 20px; }
+    .service-card.featured .service-desc { color: rgba(255,255,255,0.55); }
+    .service-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .service-card.featured .service-price { color: var(--periwinkle); }
+    .service-price-note { font-size: 12px; color: var(--mid-gray); }
+    .service-card.featured .service-price-note { color: rgba(255,255,255,0.35); }
+    .service-features { list-style: none; margin: 20px 0; }
+    .service-features li { font-size: 14px; color: var(--mid-gray); padding: 6px 0; border-bottom: 1px solid var(--light-border); display: flex; align-items: center; gap: 8px; }
+    .service-features li::before { content: '✓'; color: var(--cornflower); font-weight: 700; flex-shrink: 0; }
+    .service-card.featured .service-features li { color: rgba(255,255,255,0.55); border-color: rgba(107,123,196,0.15); }
+    .service-features li:last-child { border-bottom: none; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+
+    .contact-info-card { background: var(--near-black); padding: 40px 36px; position: sticky; top: calc(var(--nav-height) + 32px); border-radius: 4px; border: 1px solid rgba(107,123,196,0.2); }
+    .contact-info-card h3 { font-family: var(--font-display); font-size: 22px; color: var(--white); margin-bottom: 8px; }
+    .contact-info-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 28px; }
+
+    .contact-detail { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(107,123,196,0.12); }
+    .contact-detail:last-of-type { border-bottom: none; }
+    .contact-detail-icon { width: 38px; height: 38px; background: rgba(107,123,196,0.12); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; border-radius: 3px; }
+    .contact-detail-text span:first-child { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); margin-bottom: 2px; font-weight: 600; }
+    .contact-detail-text span:last-child { font-size: 14px; color: rgba(255,255,255,0.75); }
+
+    .social-row { display: flex; gap: 8px; margin-top: 24px; }
+    .social-btn { padding: 9px 14px; background: rgba(107,123,196,0.1); border: 1px solid rgba(107,123,196,0.2); color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 500; text-decoration: none; transition: var(--transition); border-radius: 3px; cursor: pointer; font-family: var(--font-body); }
+    .social-btn:hover { background: rgba(107,123,196,0.2); color: var(--white); }
+
+    .contact-form-wrap h3 { font-family: var(--font-display); font-size: 26px; margin-bottom: 8px; color: var(--near-black); }
+    .contact-form-wrap > p { font-size: 15px; color: var(--mid-gray); margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mid-gray); margin-bottom: 7px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 13px; background: var(--white); border: 1px solid var(--light-border); font-size: 15px; font-family: var(--font-body); color: var(--near-black); outline: none; transition: border-color 0.2s; border-radius: 3px; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--cornflower); }
+    .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6D8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-submit { width: 100%; padding: 15px; background: var(--navy); color: var(--white); font-size: 14px; font-weight: 700; font-family: var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--cornflower); cursor: pointer; transition: background 0.2s; margin-top: 6px; border-radius: 3px; }
+    .form-submit:hover { background: var(--navy-dark); }
+    .form-disclaimer { margin-top: 12px; font-size: 12px; color: var(--mid-gray); line-height: 1.6; }
+
+    .faq-list { margin-top: 0; }
+    .faq-item { border-bottom: 1px solid var(--light-border); padding: 20px 0; }
+    .faq-q { font-weight: 600; font-size: 16px; color: var(--near-black); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+    .faq-q::before { content: 'Q'; color: var(--cornflower); font-weight: 700; flex-shrink: 0; }
+    .faq-a { font-size: 14px; color: var(--mid-gray); line-height: 1.8; padding-left: 22px; }
+
+    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } .contact-grid { grid-template-columns: 1fr; } .contact-info-card { position: static; } }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/DTF logo -no background full text.png" alt="Deals Take Flight logo" class="nav-logo-img" style="height:70px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="links.html">Deal Alerts</a></li>
+      <li><a href="linktree.html">Links</a></li>
+      <li><a href="contact.html" class="nav-cta">Work With Me</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label">Work With Me</div>
+      <h1 class="section-title">Let's Find Your<br>Perfect Deal Together</h1>
+      <p class="section-subtitle">Whether you need a one-time strategy session or ongoing deal monitoring, I'm here to help you fly smarter and spend less.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-label reveal">Services</div>
+    <h2 class="section-title reveal">How I Can Help</h2>
+    <p class="section-subtitle reveal">Tailored services for every type of Canadian traveller.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">☕</span>
+        <h3 class="service-name">Quick Strategy Call</h3>
+        <p class="service-desc">A focused 30-minute call to discuss your upcoming trip and identify the best booking windows, airlines, and fare strategies.</p>
+        <div class="service-price">$49</div>
+        <div class="service-price-note">CAD · one-time</div>
+        <ul class="service-features"><li>30-minute Zoom or phone call</li><li>Route &amp; timing recommendations</li><li>Alert setup walkthrough</li><li>Email follow-up with notes</li></ul>
+      </div>
+      <div class="service-card featured reveal">
+        <span class="service-icon">✈</span>
+        <h3 class="service-name">Full Trip Planning</h3>
+        <p class="service-desc">I'll monitor your specific route, watch for price drops and mistake fares, and alert you the moment it's time to book.</p>
+        <div class="service-price">$149</div>
+        <div class="service-price-note">CAD · per trip</div>
+        <ul class="service-features"><li>60-minute planning session</li><li>60-day active deal monitoring</li><li>Business class upgrade search</li><li>Points &amp; miles optimization</li><li>Booking assistance included</li></ul>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🌐</span>
+        <h3 class="service-name">Brand Partnership</h3>
+        <p class="service-desc">Travel brands, gear companies, and tourism boards — let's create authentic content that resonates with Canadian travellers.</p>
+        <div class="service-price">Custom</div>
+        <div class="service-price-note">Pricing based on scope</div>
+        <ul class="service-features"><li>Newsletter sponsorships</li><li>Social media collaborations</li><li>Destination campaigns</li><li>Affiliate partnerships</li></ul>
+      </div>
+    </div>
+
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Send a Message</h2>
+    <div style="margin-bottom:40px;"></div>
+
+    <div class="contact-grid">
+      <div class="contact-info-card reveal">
+        <h3>Ready to Fly Smarter?</h3>
+        <p>Fill out the form and I'll get back to you within 24 hours. For urgent deal questions, DM me on Instagram.</p>
+        <div class="contact-detail"><div class="contact-detail-icon">📧</div><div class="contact-detail-text"><span>Email</span><span>hello@dealstakeflight.ca</span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">⏰</div><div class="contact-detail-text"><span>Response Time</span><span>Within 24 hours</span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">🇨🇦</div><div class="contact-detail-text"><span>Based In</span><span>Canada</span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">🌐</div><div class="contact-detail-text"><span>Newsletter</span><span>12,000+ subscribers</span></div></div>
+        <div class="social-row">
+          <a class="social-btn" href="#">📸 Instagram</a>
+          <a class="social-btn" href="#">🎵 TikTok</a>
+          <a class="social-btn" href="#">📬 Newsletter</a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <h3>Tell Me About Your Trip</h3>
+        <p>The more details you share, the better I can help you find an incredible deal.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Alex" required></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Johnson" required></div>
+          </div>
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="your@email.com" required></div>
+          <div class="form-row">
+            <div class="form-group"><label>Departure Airport</label><select><option value="">Select airport…</option><option>Toronto (YYZ)</option><option>Vancouver (YVR)</option><option>Montreal (YUL)</option><option>Calgary (YYC)</option><option>Edmonton (YEG)</option><option>Ottawa (YOW)</option><option>Winnipeg (YWG)</option><option>Halifax (YHZ)</option><option>Other</option></select></div>
+            <div class="form-group"><label>Destination</label><input type="text" placeholder="e.g. Paris, Bali, Tokyo…"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Travel Window</label><input type="text" placeholder="e.g. July–August 2025"></div>
+            <div class="form-group"><label>Budget (CAD per person)</label><select><option value="">Select range…</option><option>Under $500</option><option>$500–$1,000</option><option>$1,000–$2,000</option><option>$2,000–$5,000</option><option>$5,000+ (Business Class)</option><option>Flexible / Surprise me</option></select></div>
+          </div>
+          <div class="form-group"><label>I'm Interested In</label><select><option value="">Select service…</option><option>Quick Strategy Call ($49)</option><option>Full Trip Planning ($149)</option><option>Brand Partnership</option><option>Just have a question</option></select></div>
+          <div class="form-group"><label>Message *</label><textarea placeholder="Tell me about your dream trip, travel style, any flexibility on dates, or anything else that would help me find you the best deal…" required></textarea></div>
+          <button type="submit" class="form-submit">Send My Message →</button>
+          <p class="form-disclaimer">Your information is never sold or shared. I'll only use it to help you find great flight deals. 🍁</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:var(--light-bg);padding:80px 0;border-top:1px solid var(--light-border);">
+    <div style="max-width:720px;margin:0 auto;padding:0 40px;">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal">Common Questions</h2>
+      <div class="faq-list reveal">
+        <div class="faq-item"><div class="faq-q">Are these real deals or just estimates?</div><div class="faq-a">Every deal featured on this site is verified before posting. Prices are confirmed live from booking platforms. That said, fares can change within hours — always double-check before buying.</div></div>
+        <div class="faq-item"><div class="faq-q">Do you book flights on my behalf?</div><div class="faq-a">No — I find and recommend the deals, then you book directly through the airline or booking platform. This keeps your payment information secure and ensures you have direct access to your booking.</div></div>
+        <div class="faq-item"><div class="faq-q">What airports do you cover?</div><div class="faq-a">Primarily major Canadian airports: YYZ (Toronto), YVR (Vancouver), YUL (Montreal), YYC (Calgary), and YEG (Edmonton). I also cover select secondary airports for specific deals.</div></div>
+        <div class="faq-item"><div class="faq-q">How do mistake fares work?</div><div class="faq-a">Airlines occasionally publish fares far below their intended price due to currency errors, system glitches, or manual entry mistakes. These can be ticketed and honoured — but they disappear within hours. Speed is everything.</div></div>
+        <div class="faq-item"><div class="faq-q">Can you help with points and miles redemptions?</div><div class="faq-a">Absolutely. Aeroplan, Air Miles, and credit card travel programs are part of what I cover. The Full Trip Planning service includes a review of your points balance and the best ways to use them for your trip.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><img src="assets/logo.jpg" alt="Deals Take Flight" class="nav-logo-img"><span class="nav-logo-text"><span>Deals Take Flight</span><span style="color:var(--periwinkle-mid);">🍁 Canadian Travel Deals</span></span></a>
+          <p>Helping Canadians fly smarter.</p>
+        </div>
+        <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="links.html">Deal Alerts</a><a href="contact.html">Work With Me</a></div>
+        <div class="footer-col"><h4>Airports</h4><a href="#">Toronto (YYZ)</a><a href="#">Vancouver (YVR)</a><a href="#">Montreal (YUL)</a><a href="#">Calgary (YYC)</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Newsletter</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Deals Take Flight 🍁 All rights reserved.</span><span>hello@dealstakeflight.ca</span></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

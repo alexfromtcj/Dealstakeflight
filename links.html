@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Alerts — Deals Take Flight</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.revealed { opacity: 1; transform: none; }
+
+    .filter-bar { background: var(--white); border-bottom: 1px solid var(--light-border); padding: 18px 40px; position: sticky; top: var(--nav-height); z-index: 100; }
+    .filter-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid-gray); margin-right: 6px; }
+    .filter-btn { padding: 7px 16px; background: transparent; border: 1px solid var(--light-border); font-size: 13px; font-family: var(--font-body); color: var(--mid-gray); cursor: pointer; border-radius: 3px; transition: var(--transition); font-weight: 500; }
+    .filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .filter-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+    .deals-layout { max-width: 1200px; margin: 0 auto; padding: 52px 40px; display: grid; grid-template-columns: 240px 1fr; gap: 48px; align-items: start; }
+
+    .sidebar { position: sticky; top: calc(var(--nav-height) + 65px); }
+    .sidebar-section { margin-bottom: 28px; }
+    .sidebar-title { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--light-border); }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 5px 0; cursor: pointer; }
+    .checkbox-item input { accent-color: var(--navy); cursor: pointer; }
+    .checkbox-item label { font-size: 14px; color: var(--near-black); cursor: pointer; }
+    .checkbox-count { margin-left: auto; font-size: 12px; color: var(--mid-gray); }
+    .price-range { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .price-range input[type="number"] { width: 85px; padding: 7px 10px; border: 1px solid var(--light-border); font-size: 14px; font-family: var(--font-body); color: var(--near-black); border-radius: 3px; outline: none; }
+    .price-range input[type="number"]:focus { border-color: var(--navy); }
+    .price-sep { font-size: 14px; color: var(--mid-gray); }
+
+    .deal-count { font-size: 14px; color: var(--mid-gray); margin-bottom: 20px; }
+    .deal-count strong { color: var(--near-black); }
+
+    .deal-row { background: var(--white); border: 1px solid var(--light-border); display: grid; grid-template-columns: 96px 1fr auto; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; margin-bottom: 10px; border-radius: 4px; }
+    .deal-row:hover { transform: translateX(3px); box-shadow: 0 4px 20px rgba(61,63,110,0.1); }
+    .deal-row-thumb { background: var(--near-black); display: flex; align-items: center; justify-content: center; font-size: 34px; }
+    .deal-row-body { padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+    .deal-row-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .deal-row-route { font-size: 15px; font-weight: 600; color: var(--near-black); }
+    .deal-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+    .badge-hot      { background: rgba(61,63,110,0.1); color: var(--navy); }
+    .badge-business { background: rgba(107,123,196,0.12); color: var(--navy-light); }
+    .badge-mistake  { background: rgba(168,172,218,0.2); color: var(--navy-dark); }
+    .badge-cheap    { background: rgba(107,123,196,0.08); color: var(--cornflower); }
+    .deal-row-meta  { font-size: 13px; color: var(--mid-gray); }
+    .deal-row-dates { font-size: 13px; color: var(--mid-gray); }
+
+    .deal-row-price { padding: 14px 20px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; border-left: 1px solid var(--light-border); background: var(--light-bg); min-width: 130px; }
+    .deal-row-was { font-size: 12px; color: var(--mid-gray); text-decoration: line-through; }
+    .deal-row-now { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .deal-row-pct { font-size: 11px; font-weight: 700; color: var(--cornflower); margin-top: 2px; }
+    .deal-row-btn { margin-top: 8px; padding: 6px 14px; background: var(--navy); color: var(--white); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: none; cursor: pointer; border-radius: 2px; transition: background 0.2s; font-family: var(--font-body); }
+    .deal-row-btn:hover { background: var(--navy-dark); }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--light-border); }
+    .resource-card { background: var(--white); border: 1px solid var(--light-border); padding: 20px; text-decoration: none; transition: var(--transition); display: block; border-radius: 4px; }
+    .resource-card:hover { border-color: var(--cornflower); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(61,63,110,0.08); }
+    .resource-card-icon { font-size: 28px; margin-bottom: 10px; }
+    .resource-card h3 { font-size: 15px; font-weight: 600; color: var(--near-black); margin-bottom: 4px; }
+    .resource-card p { font-size: 13px; color: var(--mid-gray); line-height: 1.5; }
+
+    @media (max-width: 900px) {
+      .deals-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .deal-row { grid-template-columns: 80px 1fr; }
+      .deal-row-price { display: none; }
+    }
+    @media (max-width: 600px) {
+      .filter-bar { padding: 14px 20px; }
+      .deals-layout { padding: 32px 20px; }
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/DTF logo -no background full text.png" alt="Deals Take Flight logo" class="nav-logo-img" style="height:70px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="links.html">Deal Alerts</a></li>
+      <li><a href="linktree.html">Links</a></li>
+      <li><a href="contact.html" class="nav-cta">Work With Me</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label">Live Deals</div>
+      <h1 class="section-title">Deal Alerts &amp; Resources</h1>
+      <p class="section-subtitle">Every deal below was verified and hand-picked. Departure airports, dates, and prices are updated regularly. Always confirm before booking.</p>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active">All Deals</button>
+      <button class="filter-btn">🔥 Hot Fares</button>
+      <button class="filter-btn">💼 Business Class</button>
+      <button class="filter-btn">⚠️ Mistake Fares</button>
+      <button class="filter-btn">🌊 Beach &amp; Sun</button>
+      <button class="filter-btn">🏙️ City Breaks</button>
+    </div>
+  </div>
+
+  <div class="deals-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Departure Airport</div>
+        <div class="checkbox-item"><input type="checkbox" id="yyz" checked><label for="yyz">Toronto (YYZ)</label><span class="checkbox-count">14</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="yvr" checked><label for="yvr">Vancouver (YVR)</label><span class="checkbox-count">9</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="yul" checked><label for="yul">Montreal (YUL)</label><span class="checkbox-count">7</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="yyc"><label for="yyc">Calgary (YYC)</label><span class="checkbox-count">5</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="yeg"><label for="yeg">Edmonton (YEG)</label><span class="checkbox-count">3</span></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Cabin Class</div>
+        <div class="checkbox-item"><input type="checkbox" id="eco" checked><label for="eco">Economy</label><span class="checkbox-count">24</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="prem"><label for="prem">Premium Economy</label><span class="checkbox-count">6</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="biz"><label for="biz">Business Class</label><span class="checkbox-count">8</span></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Price Range (CAD)</div>
+        <div class="price-range"><input type="number" placeholder="$100" min="0"><span class="price-sep">to</span><input type="number" placeholder="$2,000" min="0"></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Region</div>
+        <div class="checkbox-item"><input type="checkbox" id="europe" checked><label for="europe">Europe</label><span class="checkbox-count">11</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="asia" checked><label for="asia">Asia</label><span class="checkbox-count">8</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="carib"><label for="carib">Caribbean</label><span class="checkbox-count">6</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="latam"><label for="latam">Latin America</label><span class="checkbox-count">5</span></div>
+        <div class="checkbox-item"><input type="checkbox" id="africa"><label for="africa">Africa</label><span class="checkbox-count">4</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <p class="deal-count">Showing <strong>8 deals</strong> · Updated: Today</p>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#1a1b30;">🗼</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Toronto (YYZ) → Paris (CDG)</span><span class="deal-badge badge-hot">🔥 Hot</span></div><div class="deal-row-meta">Air France · Non-stop · Return</div><div class="deal-row-dates">Travel: Jun 2 – Sep 28, 2025</div></div><div class="deal-row-price"><span class="deal-row-was">Was $1,240</span><span class="deal-row-now">$389</span><span class="deal-row-pct">↓ 69% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#1e1a2e;">🌸</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Vancouver (YVR) → Tokyo (NRT)</span><span class="deal-badge badge-cheap">💰 Great Value</span></div><div class="deal-row-meta">ANA · Non-stop · Return</div><div class="deal-row-dates">Travel: Oct – Nov 2025</div></div><div class="deal-row-price"><span class="deal-row-was">Was $1,600</span><span class="deal-row-now">$699</span><span class="deal-row-pct">↓ 56% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#182030;">🌴</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Vancouver (YVR) → Bali (DPS)</span><span class="deal-badge badge-business">💼 Business</span></div><div class="deal-row-meta">Singapore Airlines · 1 Stop · Return</div><div class="deal-row-dates">Travel: Oct–Dec 2025</div></div><div class="deal-row-price"><span class="deal-row-was">Was $6,800</span><span class="deal-row-now">$1,899</span><span class="deal-row-pct">↓ 72% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#22182e;">🏛️</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Montreal (YUL) → Rome (FCO)</span><span class="deal-badge badge-mistake">⚠️ Mistake Fare</span></div><div class="deal-row-meta">ITA Airways · Non-stop · Return</div><div class="deal-row-dates">Travel: May–Aug 2025 · Limited availability</div></div><div class="deal-row-price"><span class="deal-row-was">Was $1,100</span><span class="deal-row-now">$299</span><span class="deal-row-pct">↓ 73% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#10182e;">🇬🇧</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Toronto (YYZ) → London (LHR)</span><span class="deal-badge badge-hot">🔥 Hot</span></div><div class="deal-row-meta">Air Canada · Non-stop · Return</div><div class="deal-row-dates">Travel: Sep–Nov 2025</div></div><div class="deal-row-price"><span class="deal-row-was">Was $1,050</span><span class="deal-row-now">$449</span><span class="deal-row-pct">↓ 57% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#18102e;">🦁</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Calgary (YYC) → Nairobi (NBO)</span><span class="deal-badge badge-cheap">💰 Great Value</span></div><div class="deal-row-meta">Ethiopian Airlines · 1 Stop · Return</div><div class="deal-row-dates">Travel: Jan–Mar 2026</div></div><div class="deal-row-price"><span class="deal-row-was">Was $2,200</span><span class="deal-row-now">$849</span><span class="deal-row-pct">↓ 61% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#16102a;">🇪🇸</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Toronto (YYZ) → Barcelona (BCN)</span><span class="deal-badge badge-business">💼 Business</span></div><div class="deal-row-meta">Iberia · 1 Stop (MAD) · Return</div><div class="deal-row-dates">Travel: May–Jul 2025</div></div><div class="deal-row-price"><span class="deal-row-was">Was $5,400</span><span class="deal-row-now">$1,499</span><span class="deal-row-pct">↓ 72% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="deal-row reveal"><div class="deal-row-thumb" style="background:#10201a;">🏝️</div><div class="deal-row-body"><div class="deal-row-top"><span class="deal-row-route">Montreal (YUL) → Cancún (CUN)</span><span class="deal-badge badge-hot">🔥 Hot</span></div><div class="deal-row-meta">Air Transat · Non-stop · Return</div><div class="deal-row-dates">Travel: Dec 2025–Jan 2026</div></div><div class="deal-row-price"><span class="deal-row-was">Was $920</span><span class="deal-row-now">$349</span><span class="deal-row-pct">↓ 62% off</span><button class="deal-row-btn">Book Now</button></div></div>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="#"><div class="resource-card-icon">📱</div><h3>Download Google Flights</h3><p>The best free tool for tracking prices and setting alerts on any route.</p></a>
+        <a class="resource-card" href="#"><div class="resource-card-icon">🎒</div><h3>Packing Guide</h3><p>Our complete carry-on packing list for any trip, any climate.</p></a>
+        <a class="resource-card" href="#"><div class="resource-card-icon">💳</div><h3>Best Travel Credit Cards (Canada)</h3><p>Top Aeroplan, Air Miles, and cash-back cards for 2025.</p></a>
+        <a class="resource-card" href="contact.html"><div class="resource-card-icon">🤝</div><h3>Book a 1-on-1 Strategy Call</h3><p>Let's find deals tailored to your specific dates and airports.</p></a>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo"><img src="assets/logo.jpg" alt="Deals Take Flight" class="nav-logo-img"><span class="nav-logo-text"><span>Deals Take Flight</span><span style="color:var(--periwinkle-mid);">🍁 Canadian Travel Deals</span></span></a>
+          <p>Helping Canadians fly smarter.</p>
+        </div>
+        <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="links.html">Deal Alerts</a><a href="contact.html">Work With Me</a></div>
+        <div class="footer-col"><h4>Airports</h4><a href="#">Toronto (YYZ)</a><a href="#">Vancouver (YVR)</a><a href="#">Montreal (YUL)</a><a href="#">Calgary (YYC)</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Newsletter</a><a href="contact.html">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2025 Deals Take Flight 🍁 All rights reserved.</span><span>Prices shown for illustration. Verify before booking.</span></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
