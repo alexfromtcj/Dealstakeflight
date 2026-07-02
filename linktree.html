@@ -4,18 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Links — Deals Take Flight</title>
-  <meta name="description" content="All Deals Take Flight links in one place — deal alerts, travel resources, and ways to work together.">
+  <meta name="description" content="Deals Take Flight links — get the AMEX Cobalt Card.">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { background: #f1f3ff; }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.revealed { opacity: 1; transform: none; }
 
     .lt-wrap {
       min-height: calc(100vh - var(--nav-height));
       padding-top: calc(var(--nav-height) + 52px);
-      padding-bottom: 80px;
+      padding-bottom: 60px;
       background: #f1f3ff;
       display: flex;
       flex-direction: column;
@@ -26,130 +24,95 @@
 
     .lt-inner {
       width: 100%;
-      max-width: 480px;
-    }
-
-    /* ── HEADER ── */
-    .lt-header {
+      max-width: 520px;
       text-align: center;
-      margin-bottom: 44px;
     }
 
-    .lt-logo {
-      height: 80px;
-      width: auto;
-      display: block;
-      margin: 0 auto 20px;
+    .lt-card-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .lt-bio {
-      font-size: 15px;
-      color: var(--mid-gray);
-      line-height: 1.7;
-      max-width: 360px;
-      margin: 0 auto 14px;
-    }
-
-    .lt-location {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--cornflower);
-      background: rgba(107,123,196,0.1);
-      border: 1px solid rgba(107,123,196,0.25);
-      padding: 5px 14px;
-      border-radius: 3px;
-    }
-
-    /* ── GROUPS ── */
-    .lt-group {
-      margin-bottom: 36px;
-    }
-
-    .lt-category {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--periwinkle-mid);
-    }
-
-    /* ── BUTTONS ── */
     .lt-btn {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 15px 22px;
-      margin-bottom: 10px;
+      min-height: 64px;
+      padding: 0 22px;
       background: var(--navy);
       color: var(--white);
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 600;
       font-family: var(--font-body);
-      border: 1px solid rgba(107,123,196,0.35);
-      border-radius: 8px;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      border: none;
+      border-radius: 12px;
+      transition: background 0.2s;
       cursor: pointer;
+      box-sizing: border-box;
     }
 
     .lt-btn:hover {
-      background: var(--navy-dark);
-      border-color: var(--cornflower);
-      transform: translateY(-1px);
+      background: var(--cornflower);
     }
 
-    .lt-btn-icon {
-      font-size: 16px;
-      flex-shrink: 0;
-      margin-right: 12px;
-    }
-
-    .lt-btn-label {
-      flex: 1;
-    }
-
-    .lt-btn-arrow {
+    .lt-subtext {
       font-size: 13px;
-      opacity: 0.45;
-      flex-shrink: 0;
+      color: var(--mid-gray);
+      text-align: center;
+      max-width: 380px;
+      margin: 10px auto 0;
     }
 
-    .lt-btn:hover .lt-btn-arrow {
-      opacity: 0.8;
+    .lt-section-label {
+      color: var(--cornflower);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 16px;
     }
 
-    /* Featured button variant */
-    .lt-btn.featured {
+    .lt-social-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .lt-social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
       background: var(--navy);
-      border-color: var(--cornflower);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 16px;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      box-sizing: border-box;
     }
 
-    .lt-btn.featured:hover {
-      background: var(--navy-dark);
+    .lt-social-btn i {
+      font-size: 28px;
+      color: var(--white);
     }
 
-    /* ── DIVIDER ── */
-    .lt-divider {
+    .lt-social-btn:hover {
+      background: var(--cornflower);
+      transform: scale(1.08);
+    }
+
+    .lt-footer {
       text-align: center;
       font-size: 12px;
-      color: var(--light-border);
-      margin: 40px 0 20px;
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 520px) {
-      .lt-wrap { padding-top: calc(var(--nav-height) + 36px); }
-      .lt-logo { height: 64px; }
-      .lt-btn { padding: 14px 18px; }
+      color: var(--mid-gray);
+      margin-top: 48px;
     }
   </style>
 </head>
@@ -161,9 +124,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="links.html">Deal Alerts</a></li>
       <li><a href="linktree.html">Links</a></li>
-      <li><a href="contact.html" class="nav-cta">Work With Me</a></li>
+      <li><a href="contact.html" class="nav-cta">Partner With Me</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Toggle menu">
       <span></span>
@@ -175,94 +137,41 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
-      <!-- Header -->
-      <div class="lt-header reveal">
-        <img src="assets/DTF logo -no background.png" alt="Deals Take Flight" class="lt-logo" style="height:150px;width:auto;">
-        <p class="lt-bio">Curated flight deals for Canadians — mistake fares, business class steals, and real savings departing from YYZ, YVR, YUL &amp; more.</p>
-        <span class="lt-location">🍁 Canadian Travel Deals</span>
-      </div>
-
-      <!-- Deal Alerts -->
-      <div class="lt-group reveal">
-        <div class="lt-category">Deal Alerts</div>
-        <a class="lt-btn featured" href="links.html">
-          <span class="lt-btn-icon">✈️</span>
-          <span class="lt-btn-label">Browse All Current Deals</span>
-          <span class="lt-btn-arrow">→</span>
+      <div class="lt-section-label">💳 Credit Cards</div>
+      <div class="lt-card-group">
+        <a class="lt-btn" href="https://americanexpress.com/en-ca/referral/cobalt?ref=aLEXaSS9jv&XL=MIANS">
+          <span>💳 Get the AMEX Cobalt Card</span>
+          <span>→</span>
         </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">📬</span>
-          <span class="lt-btn-label">Subscribe to Deal Alerts</span>
-          <span class="lt-btn-arrow">→</span>
+        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/platinum?CORID=g~R~A~E~M~B~M~J~y~m-1783035080233-343610&CPID=100631759&GENCODE=349993060860190&ref=gRAEMBMJym&v=2">
+          <span>💳 Get the AMEX Platinum Card</span>
+          <span>→</span>
         </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">🔥</span>
-          <span class="lt-btn-label">Mistake Fares — What They Are &amp; How to Book</span>
-          <span class="lt-btn-arrow">→</span>
+        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/gold-rewards-card?CORID=g~R~A~E~M~B~i~t~T~c-1783035153049-343359&CPID=100631759&GENCODE=349993177081359&ref=gRAEMBitTc&v=2">
+          <span>💳 Get the AMEX Gold Rewards Card</span>
+          <span>→</span>
+        </a>
+        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/marriott-bonvoy?CORID=a~L~E~X~a~S~E~8~Y~v-1783035308537-520082&CPID=100358132&GENCODE=349993486354075&XL=MIANS&ref=aLEXaSE8Yv&v=2">
+          <span>💳 Get the AMEX Marriott Bonvoy Card</span>
+          <span>→</span>
         </a>
       </div>
+      <p class="lt-subtext">Using these links gives you a welcome bonus and supports Deals Take Flight at no extra cost to you ✈</p>
 
-      <!-- Travel Resources -->
-      <div class="lt-group reveal">
-        <div class="lt-category">Travel Resources</div>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">📱</span>
-          <span class="lt-btn-label">Track Flights with Google Flights</span>
-          <span class="lt-btn-arrow">→</span>
+      <div class="lt-section-label">Follow Along</div>
+      <div class="lt-social-group">
+        <a class="lt-social-btn" href="https://www.instagram.com/dealstakeflight/" aria-label="Instagram" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i>
         </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">💳</span>
-          <span class="lt-btn-label">Best Canadian Travel Credit Cards (2025)</span>
-          <span class="lt-btn-arrow">→</span>
+        <a class="lt-social-btn" href="https://www.youtube.com/@dealstakeflight" aria-label="YouTube" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i>
         </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">🎒</span>
-          <span class="lt-btn-label">Ultimate Carry-On Packing Guide</span>
-          <span class="lt-btn-arrow">→</span>
+        <a class="lt-social-btn" href="https://www.tiktok.com/@dealstakeflight" aria-label="TikTok" target="_blank" rel="noopener">
+          <i class="fa-brands fa-tiktok"></i>
         </a>
       </div>
 
-      <!-- Work With Me -->
-      <div class="lt-group reveal">
-        <div class="lt-category">Work With Me</div>
-        <a class="lt-btn" href="contact.html">
-          <span class="lt-btn-icon">☕</span>
-          <span class="lt-btn-label">Book a Strategy Call — $49 CAD</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-        <a class="lt-btn" href="contact.html">
-          <span class="lt-btn-icon">🗺️</span>
-          <span class="lt-btn-label">Full Trip Planning Service — $149 CAD</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-        <a class="lt-btn" href="contact.html">
-          <span class="lt-btn-icon">🤝</span>
-          <span class="lt-btn-label">Brand &amp; Partnership Inquiries</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-      </div>
-
-      <!-- Social / Follow -->
-      <div class="lt-group reveal">
-        <div class="lt-category">Follow Along</div>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">📸</span>
-          <span class="lt-btn-label">Instagram</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">🎵</span>
-          <span class="lt-btn-label">TikTok</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-        <a class="lt-btn" href="#">
-          <span class="lt-btn-icon">📧</span>
-          <span class="lt-btn-label">Email Newsletter</span>
-          <span class="lt-btn-arrow">→</span>
-        </a>
-      </div>
-
-      <div class="lt-divider">© 2025 Deals Take Flight 🍁</div>
+      <div class="lt-footer">© 2025 Deals Take Flight 🍁</div>
 
     </div>
   </div>
