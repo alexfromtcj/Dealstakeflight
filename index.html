@@ -6,50 +6,197 @@
   <title>Deals Take Flight — Canadian Travel Deals</title>
   <meta name="description" content="Discover the best flight deals departing from Canada. Business class upgrades, mistake fares, and curated travel savings for Canadians.">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.revealed { opacity: 1; transform: none; }
 
-    .feature-strip { background: var(--light-bg); border-top: 1px solid var(--light-border); border-bottom: 1px solid var(--light-border); padding: 0 40px; }
-    .feature-strip-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
-    .feature-item { padding: 32px 24px; display: flex; align-items: flex-start; gap: 14px; border-right: 1px solid var(--light-border); }
-    .feature-item:last-child { border-right: none; }
-    .feature-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
-    .feature-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--near-black); }
-    .feature-item p { font-size: 13px; color: var(--mid-gray); line-height: 1.5; }
+    /* ── HERO SPLIT LAYOUT ── */
+    .hero { align-items: stretch; height: auto; min-height: auto; }
+    .hero-split { position: relative; z-index: 1; display: flex; width: 100%; height: 100%; align-items: stretch; }
+    .hero-text-col { flex: 0 0 45%; display: flex; flex-direction: column; justify-content: center; padding: 0 40px; }
+    .hero-text { max-width: 480px; }
 
-    .destinations-bg { background: var(--light-bg); }
-    .destinations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .dest-card { aspect-ratio: 4/3; background: var(--near-black); position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: flex-end; border-radius: 3px; }
-    .dest-card:first-child { grid-row: span 2; aspect-ratio: auto; }
-    .dest-emoji { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 80px; opacity: 0.2; transition: opacity 0.3s, transform 0.4s; }
-    .dest-card:hover .dest-emoji { opacity: 0.35; transform: scale(1.1); }
-    .dest-info { position: relative; z-index: 2; padding: 20px; background: linear-gradient(transparent, rgba(26,27,46,0.85)); width: 100%; }
-    .dest-city { font-size: 18px; font-weight: 600; color: var(--white); }
-    .dest-price { font-size: 13px; color: rgba(255,255,255,0.6); }
-    .dest-price strong { color: var(--periwinkle); }
+    .hero-photo-col {
+      flex: 0 0 55%;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin-left: -30px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      mask-image: linear-gradient(to right, transparent 0%, black 4%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%);
+    }
 
-    .newsletter-bar { background: var(--navy); padding: 32px 40px; border-top: 3px solid var(--cornflower); }
-    .newsletter-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-    .newsletter-text h3 { font-family: var(--font-display); font-size: 22px; color: var(--white); margin-bottom: 4px; }
-    .newsletter-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
-    .newsletter-form { display: flex; gap: 0; }
-    .newsletter-form input { padding: 12px 20px; font-size: 14px; border: none; background: rgba(255,255,255,0.12); color: var(--white); width: 280px; outline: none; border: 1px solid rgba(197,200,232,0.2); border-right: none; }
-    .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-    .newsletter-form button { padding: 12px 24px; background: var(--near-black); color: var(--white); border: 1px solid rgba(107,123,196,0.4); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; font-family: var(--font-body); }
-    .newsletter-form button:hover { background: #0e0f1f; }
+    .photo-scroll-track {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+      height: 360px;
+      gap: 12px;
+      animation: scrollCarousel 34s linear infinite;
+    }
+
+    .carousel-img {
+      width: 260px;
+      height: 360px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    @keyframes scrollCarousel {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 899px) {
+      .hero { height: auto; min-height: auto; padding-bottom: 24px; }
+      .hero-split { flex-direction: column; }
+      .hero-text-col { flex: none; padding: 48px 20px 32px; }
+      .hero-text { max-width: none; }
+      .hero-photo-col {
+        flex: none;
+        width: 100%;
+        max-height: 220px;
+        margin-left: 0;
+        margin-top: 16px;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+      .hero-photo-col::-webkit-scrollbar { display: none; }
+      .photo-scroll-track {
+        flex-direction: row;
+        animation: none;
+        width: max-content;
+        height: 100%;
+        gap: 8px;
+      }
+      .carousel-img {
+        width: 160px;
+        height: 220px;
+        object-fit: cover;
+        object-position: center top;
+        scroll-snap-align: start;
+      }
+    }
+
+    .platform-icon-group { display: flex; gap: 12px; margin-top: 32px; }
+    .platform-icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--navy);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .platform-icon-btn i { font-size: 20px; color: var(--navy); }
+    .platform-icon-btn:hover { background: var(--periwinkle); }
+
+    .photo-heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--near-black);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    /* ── PHOTO CAROUSEL ── */
+    .photo-strip {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .photo-strip::-webkit-scrollbar { display: none; }
+    .photo-card {
+      flex: 0 0 280px;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-gray);
+      font-size: 14px;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .social-icon-group { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+    .social-icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 16px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .social-icon-btn i { font-size: 28px; color: var(--white); }
+    .social-icon-btn:hover { background: var(--cornflower); transform: scale(1.08); }
+
+    /* ── RECENT VIDEOS ── */
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .video-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(61,63,110,0.1); }
+    .video-thumb {
+      aspect-ratio: 9 / 16;
+      max-height: 320px;
+      background: var(--near-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .video-body { padding: 16px; }
+    .video-tag {
+      display: inline-block;
+      background: rgba(107,123,196,0.12);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .video-title { font-size: 15px; font-weight: 600; color: var(--near-black); margin-bottom: 8px; }
+    .video-link { font-size: 13px; font-weight: 600; color: var(--cornflower); }
 
     @media (max-width: 900px) {
-      .feature-strip-inner { grid-template-columns: repeat(2, 1fr); }
-      .destinations-grid { grid-template-columns: 1fr 1fr; }
-      .dest-card:first-child { grid-row: auto; }
-    }
-    @media (max-width: 600px) {
-      .feature-strip-inner { grid-template-columns: 1fr; }
-      .destinations-grid { grid-template-columns: 1fr; }
-      .newsletter-inner { flex-direction: column; }
-      .newsletter-form { flex-direction: column; }
-      .newsletter-form input { width: 100%; border-right: 1px solid rgba(197,200,232,0.2); border-bottom: none; }
+      .video-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -73,146 +220,112 @@
 
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-badge">🍁 Canada's Travel Deal Experts</div>
-        <h1 class="hero-title">Your Passport<br>to <em>Unbeatable</em><br>Flight Deals</h1>
-        <p class="hero-subtitle">Curated flight deals, mistake fares, and business class upgrades — all departing from Canada. Stop overpaying. Start exploring.</p>
-        <div class="hero-actions">
-          <a href="links.html" class="btn-primary">Browse Deals →</a>
-          <a href="contact.html" class="btn-secondary">Work With Me</a>
+    <div class="hero-split">
+      <div class="hero-text-col">
+        <div class="hero-text">
+          <h1 class="hero-title">Flight Deals &<br>Travel Inspiration<br>for <em>Canadians</em></h1>
+          <div class="platform-icon-group">
+            <a class="platform-icon-btn" href="https://www.instagram.com/dealstakeflight/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a class="platform-icon-btn" href="https://www.tiktok.com/@dealstakeflight" aria-label="TikTok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="platform-icon-btn" href="https://www.youtube.com/@dealstakeflight" aria-label="YouTube" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+          </div>
         </div>
       </div>
-      <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-number">$<span>199</span></div>
-          <div class="stat-label">YYZ → London, Return</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number"><span>48h</span></div>
-          <div class="stat-label">Average Deal Lifespan</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number"><span>70</span>%</div>
-          <div class="stat-label">Avg. Savings vs. Retail</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number"><span>12K</span>+</div>
-          <div class="stat-label">Subscribers Saving Now</div>
+      <div class="hero-photo-col">
+        <div class="photo-scroll-track">
+          <img class="carousel-img" src="assets/DTF 1.jpg" alt="Travel photo 1">
+          <img class="carousel-img" src="assets/DTF 2.jpg" alt="Travel photo 2">
+          <img class="carousel-img" src="assets/DTF 3.jpg" alt="Travel photo 3">
+          <img class="carousel-img" src="assets/DTF 4.jpg" alt="Travel photo 4">
+          <img class="carousel-img" src="assets/DTF 5.jpg" alt="Travel photo 5">
+          <img class="carousel-img" src="assets/DTF 6.jpg" alt="Travel photo 6">
+          <img class="carousel-img" src="assets/DTF 7.jpg" alt="Travel photo 7">
+          <img class="carousel-img" src="assets/DTF 8.jpg" alt="Travel photo 8">
+          <img class="carousel-img" src="assets/DTF 9.jpg" alt="Travel photo 9">
+          <img class="carousel-img" src="assets/DTF 10.jpg" alt="Travel photo 10">
+          <img class="carousel-img" src="assets/DTF 11.jpg" alt="Travel photo 11">
+          <img class="carousel-img" src="assets/DTF 12.jpg" alt="Travel photo 12">
+          <img class="carousel-img" src="assets/DTF 1.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 2.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 3.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 4.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 5.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 6.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 7.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 8.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 9.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 10.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 11.jpg" alt="" aria-hidden="true">
+          <img class="carousel-img" src="assets/DTF 12.jpg" alt="" aria-hidden="true">
         </div>
       </div>
     </div>
   </section>
-
-  <div class="feature-strip">
-    <div class="feature-strip-inner">
-      <div class="feature-item">
-        <span class="feature-icon">🎯</span>
-        <div><h3>Mistake Fares</h3><p>Airline pricing errors before they're corrected.</p></div>
-      </div>
-      <div class="feature-item">
-        <span class="feature-icon">💼</span>
-        <div><h3>Business Class</h3><p>Premium cabins at economy prices.</p></div>
-      </div>
-      <div class="feature-item">
-        <span class="feature-icon">🇨🇦</span>
-        <div><h3>Canadian Airports</h3><p>YYZ, YVR, YUL, YYC &amp; more.</p></div>
-      </div>
-      <div class="feature-item">
-        <span class="feature-icon">⚡</span>
-        <div><h3>Real-Time Alerts</h3><p>First to know, first to book.</p></div>
-      </div>
-    </div>
-  </div>
 
   <section class="section">
-    <div class="section-label reveal">Featured Deals</div>
-    <h2 class="section-title reveal">Hot Fares Right Now</h2>
-    <p class="section-subtitle reveal">These deals won't last. Book before they vanish.</p>
-    <div class="deals-grid">
-      <div class="deal-card reveal">
-        <div class="deal-card-image" style="background:#1a1b2e;">
-          <div class="deal-card-image-bg">🗼</div>
-          <span style="position:relative;font-size:48px;">🗼</span>
-          <div class="deal-tag">🔥 Hot Deal</div>
-        </div>
-        <div class="deal-card-body">
-          <div class="deal-route">Toronto → Paris</div>
-          <div class="deal-meta">Air France · Non-stop · Return · Jun–Sep</div>
-          <div class="deal-price-row">
-            <div class="deal-price"><span class="deal-was">Was $1,240</span><span class="deal-now"><sup>$</sup>389</span></div>
-            <span class="deal-savings">Save 69%</span>
-          </div>
-        </div>
-      </div>
-      <div class="deal-card reveal">
-        <div class="deal-card-image" style="background:#18202e;">
-          <div class="deal-card-image-bg">🌴</div>
-          <span style="position:relative;font-size:48px;">🌴</span>
-          <div class="deal-tag">✈ Business</div>
-        </div>
-        <div class="deal-card-body">
-          <div class="deal-route">Vancouver → Bali</div>
-          <div class="deal-meta">Singapore Airlines · 1 Stop · Return · Oct–Dec</div>
-          <div class="deal-price-row">
-            <div class="deal-price"><span class="deal-was">Was $6,800</span><span class="deal-now"><sup>$</sup>1,899</span></div>
-            <span class="deal-savings">Save 72%</span>
-          </div>
-        </div>
-      </div>
-      <div class="deal-card reveal">
-        <div class="deal-card-image" style="background:#221a2e;">
-          <div class="deal-card-image-bg">🏛️</div>
-          <span style="position:relative;font-size:48px;">🏛️</span>
-          <div class="deal-tag">⚠️ Mistake Fare</div>
-        </div>
-        <div class="deal-card-body">
-          <div class="deal-route">Montreal → Rome</div>
-          <div class="deal-meta">ITA Airways · Non-stop · Return · May–Aug</div>
-          <div class="deal-price-row">
-            <div class="deal-price"><span class="deal-was">Was $1,100</span><span class="deal-now"><sup>$</sup>299</span></div>
-            <span class="deal-savings">Save 73%</span>
-          </div>
-        </div>
-      </div>
+    <h2 class="photo-heading reveal">Real trips. Real experiences. Real deals.</h2>
+
+    <!-- Replace with real travel photos -->
+    <div class="photo-strip reveal">
+      <div class="photo-card">📷 Photo coming soon</div>
+      <div class="photo-card">📷 Photo coming soon</div>
+      <div class="photo-card">📷 Photo coming soon</div>
+      <div class="photo-card">📷 Photo coming soon</div>
+      <div class="photo-card">📷 Photo coming soon</div>
     </div>
-    <div style="text-align:center;margin-top:48px;">
-      <a href="links.html" class="btn-primary">View All Deals →</a>
+
+    <div class="section-label reveal" style="text-align:center;margin-top:56px;">Follow Along</div>
+    <div class="social-icon-group reveal">
+      <a class="social-icon-btn" href="https://www.instagram.com/dealstakeflight/" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a class="social-icon-btn" href="https://www.tiktok.com/@dealstakeflight" aria-label="TikTok" target="_blank" rel="noopener">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a class="social-icon-btn" href="https://www.youtube.com/@dealstakeflight" aria-label="YouTube" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
     </div>
   </section>
 
-  <div class="destinations-bg">
-    <div style="padding:100px 40px;max-width:1200px;margin:0 auto;">
-      <div class="section-label reveal">Top Destinations</div>
-      <h2 class="section-title reveal">Where Will You Go?</h2>
-      <p class="section-subtitle reveal">The most popular destinations Canadians are booking right now.</p>
-      <div class="destinations-grid reveal">
-        <div class="dest-card" style="background:#1a1b30;"><div class="dest-emoji">🗼</div><div class="dest-info"><div class="dest-city">Paris, France</div><div class="dest-price">From <strong>$389</strong> return</div></div></div>
-        <div class="dest-card" style="background:#1e1a30;"><div class="dest-emoji">🎌</div><div class="dest-info"><div class="dest-city">Tokyo, Japan</div><div class="dest-price">From <strong>$699</strong> return</div></div></div>
-        <div class="dest-card" style="background:#1a2230;"><div class="dest-emoji">🌴</div><div class="dest-info"><div class="dest-city">Bali, Indonesia</div><div class="dest-price">From <strong>$899</strong> return</div></div></div>
-        <div class="dest-card" style="background:#22182e;"><div class="dest-emoji">🏛️</div><div class="dest-info"><div class="dest-city">Rome, Italy</div><div class="dest-price">From <strong>$299</strong> return</div></div></div>
-        <div class="dest-card" style="background:#1a2028;"><div class="dest-emoji">🦁</div><div class="dest-info"><div class="dest-city">Nairobi, Kenya</div><div class="dest-price">From <strong>$849</strong> return</div></div></div>
-      </div>
-    </div>
-  </div>
+  <section class="section" id="videos">
+    <div class="section-label reveal">Recent Content</div>
+    <h2 class="section-title reveal">Latest Videos</h2>
+    <p class="section-subtitle reveal">Catch up on the most recent Deals Take Flight content.</p>
 
-  <div class="newsletter-bar">
-    <div class="newsletter-inner">
-      <div class="newsletter-text">
-        <h3>Never Miss a Deal</h3>
-        <p>Join 12,000+ Canadians getting deal alerts in their inbox.</p>
-      </div>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="your@email.com">
-        <button type="submit">Get Alerts</button>
-      </form>
+    <!-- Replace with real video screenshots and links -->
+    <div class="video-grid">
+      <a class="video-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="video-thumb">▶ Coming Soon</div>
+        <div class="video-body">
+          <span class="video-tag">Instagram Reels</span>
+          <div class="video-title">Video Title Here</div>
+          <span class="video-link">Watch →</span>
+        </div>
+      </a>
+      <a class="video-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="video-thumb">▶ Coming Soon</div>
+        <div class="video-body">
+          <span class="video-tag">TikTok</span>
+          <div class="video-title">Video Title Here</div>
+          <span class="video-link">Watch →</span>
+        </div>
+      </a>
+      <a class="video-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="video-thumb">▶ Coming Soon</div>
+        <div class="video-body">
+          <span class="video-tag">Instagram Reels</span>
+          <div class="video-title">Video Title Here</div>
+          <span class="video-link">Watch →</span>
+        </div>
+      </a>
     </div>
-  </div>
+  </section>
 
   <div class="divider-section">
-    <h2>The <em style="font-style:italic;color:var(--cornflower);">Deals Take Flight</em> Difference</h2>
-    <p>We monitor hundreds of routes daily so you don't have to. When prices drop below our threshold — you hear about it first.</p>
-    <a href="contact.html" class="btn-secondary">Learn How to Work Together →</a>
+    <h2>Built for <em style="font-style:italic;color:var(--cornflower);">Canadian Travellers</em></h2>
+    <p>Real deals, real savings, real adventures — follow along on Instagram, TikTok, and YouTube.</p>
+    <a href="linktree.html" class="btn-secondary">Follow Deals Take Flight →</a>
   </div>
 
   <footer>
@@ -237,5 +350,21 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    (function() {
+      var strip = document.querySelector('.hero-photo-col');
+      if (!strip) return;
+      function step() {
+        if (window.innerWidth <= 899) {
+          strip.scrollLeft += 1;
+          if (strip.scrollLeft >= strip.scrollWidth - strip.clientWidth) {
+            strip.scrollLeft = 0;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    })();
+  </script>
 </body>
 </html>

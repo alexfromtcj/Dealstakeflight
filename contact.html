@@ -5,68 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Partner With Me — Deals Take Flight</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    body { background: #f1f3ff; }
+
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.revealed { opacity: 1; transform: none; }
 
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 80px; }
-    .service-card { background: var(--white); padding: 36px 28px; border: 1px solid var(--light-border); transition: var(--transition); position: relative; overflow: hidden; border-radius: 4px; }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,63,110,0.1); }
-    .service-card.featured { background: var(--near-black); border-color: var(--navy); }
-    .service-card.featured::before { content: 'Most Popular'; position: absolute; top: 16px; right: 16px; background: var(--navy); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--cornflower); border-radius: 2px; }
-    .service-icon { font-size: 36px; margin-bottom: 16px; display: block; }
-    .service-name { font-family: var(--font-display); font-size: 20px; margin-bottom: 10px; color: var(--near-black); }
-    .service-card.featured .service-name { color: var(--white); }
-    .service-desc { font-size: 14px; color: var(--mid-gray); line-height: 1.7; margin-bottom: 20px; }
-    .service-card.featured .service-desc { color: rgba(255,255,255,0.55); }
-    .service-price { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .service-card.featured .service-price { color: var(--periwinkle); }
-    .service-price-note { font-size: 12px; color: var(--mid-gray); }
-    .service-card.featured .service-price-note { color: rgba(255,255,255,0.35); }
-    .service-features { list-style: none; margin: 20px 0; }
-    .service-features li { font-size: 14px; color: var(--mid-gray); padding: 6px 0; border-bottom: 1px solid var(--light-border); display: flex; align-items: center; gap: 8px; }
-    .service-features li::before { content: '✓'; color: var(--cornflower); font-weight: 700; flex-shrink: 0; }
-    .service-card.featured .service-features li { color: rgba(255,255,255,0.55); border-color: rgba(107,123,196,0.15); }
-    .service-features li:last-child { border-bottom: none; }
+    /* ── HERO ── */
+    .pw-hero {
+      padding: calc(var(--nav-height) + 64px) 40px 40px;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .pw-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      margin-bottom: 16px;
+    }
+    .pw-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 46px);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .pw-hero p {
+      font-size: 16px;
+      color: var(--mid-gray);
+      line-height: 1.8;
+      max-width: 540px;
+      margin: 0 auto;
+    }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+    /* ── SHARED SECTION WRAP ── */
+    .pw-section { max-width: 960px; margin: 0 auto; padding: 48px 40px; }
+    .pw-section-title { font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); color: var(--navy); margin-bottom: 10px; text-align: center; }
+    .pw-section-subtitle { font-size: 15px; color: var(--mid-gray); text-align: center; max-width: 480px; margin: 0 auto 40px; }
 
-    .contact-info-card { background: var(--near-black); padding: 40px 36px; position: sticky; top: calc(var(--nav-height) + 32px); border-radius: 4px; border: 1px solid rgba(107,123,196,0.2); }
-    .contact-info-card h3 { font-family: var(--font-display); font-size: 22px; color: var(--white); margin-bottom: 8px; }
-    .contact-info-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 28px; }
+    /* ── WHAT I CREATE ── */
+    .create-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .create-card {
+      background: var(--white);
+      border: 1px solid var(--light-border);
+      border-radius: 10px;
+      padding: 26px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .create-icon { font-size: 26px; color: var(--navy); flex-shrink: 0; }
+    .create-label { font-size: 15px; font-weight: 600; color: var(--near-black); }
 
-    .contact-detail { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(107,123,196,0.12); }
-    .contact-detail:last-of-type { border-bottom: none; }
-    .contact-detail-icon { width: 38px; height: 38px; background: rgba(107,123,196,0.12); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; border-radius: 3px; }
-    .contact-detail-text span:first-child { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.3); margin-bottom: 2px; font-weight: 600; }
-    .contact-detail-text span:last-child { font-size: 14px; color: rgba(255,255,255,0.75); }
+    /* ── RECENT CONTENT ── */
+    .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .recent-card { display: block; text-decoration: none; color: inherit; }
+    .recent-thumb {
+      aspect-ratio: 9 / 16;
+      background: var(--light-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      font-size: 14px;
+      color: var(--mid-gray);
+      transition: border-color 0.2s;
+    }
+    .recent-card:hover .recent-thumb { border-color: var(--cornflower); }
+    .recent-title { margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--near-black); }
+    .recent-tag { margin-top: 3px; font-size: 12px; color: var(--cornflower); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .social-row { display: flex; gap: 8px; margin-top: 24px; }
-    .social-btn { padding: 9px 14px; background: rgba(107,123,196,0.1); border: 1px solid rgba(107,123,196,0.2); color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 500; text-decoration: none; transition: var(--transition); border-radius: 3px; cursor: pointer; font-family: var(--font-body); }
-    .social-btn:hover { background: rgba(107,123,196,0.2); color: var(--white); }
+    /* ── SOCIAL ── */
+    .pw-social-group { display: flex; flex-direction: row; justify-content: center; gap: 16px; }
+    .pw-social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: var(--navy);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 16px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pw-social-btn i { font-size: 28px; color: var(--white); }
+    .pw-social-btn:hover { background: var(--cornflower); transform: scale(1.08); }
 
-    .contact-form-wrap h3 { font-family: var(--font-display); font-size: 26px; margin-bottom: 8px; color: var(--near-black); }
-    .contact-form-wrap > p { font-size: 15px; color: var(--mid-gray); margin-bottom: 28px; }
+    /* ── CONTACT FORM ── */
+    .pw-contact-wrap { max-width: 560px; margin: 0 auto; padding: 48px 40px 100px; text-align: center; }
+    .pw-contact-wrap h2 { font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 34px); color: var(--navy); margin-bottom: 10px; }
+    .pw-contact-wrap > p { font-size: 15px; color: var(--mid-gray); margin-bottom: 32px; }
 
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .pw-form { text-align: left; }
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mid-gray); margin-bottom: 7px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 13px; background: var(--white); border: 1px solid var(--light-border); font-size: 15px; font-family: var(--font-body); color: var(--near-black); outline: none; transition: border-color 0.2s; border-radius: 3px; appearance: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--cornflower); }
+    .form-group input, .form-group textarea { width: 100%; padding: 12px 14px; background: var(--white); border: 1px solid var(--light-border); font-size: 15px; font-family: var(--font-body); color: var(--near-black); outline: none; transition: border-color 0.2s; border-radius: 6px; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--cornflower); }
     .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
-    .form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6D8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
-    .form-submit { width: 100%; padding: 15px; background: var(--navy); color: var(--white); font-size: 14px; font-weight: 700; font-family: var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--cornflower); cursor: pointer; transition: background 0.2s; margin-top: 6px; border-radius: 3px; }
-    .form-submit:hover { background: var(--navy-dark); }
-    .form-disclaimer { margin-top: 12px; font-size: 12px; color: var(--mid-gray); line-height: 1.6; }
+    .form-submit { width: 100%; padding: 15px; background: var(--navy); color: var(--white); font-size: 15px; font-weight: 700; font-family: var(--font-body); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
+    .form-submit:hover { background: var(--cornflower); }
+    .form-disclaimer { margin-top: 16px; font-size: 13px; color: var(--mid-gray); text-align: center; line-height: 1.6; }
 
-    .faq-list { margin-top: 0; }
-    .faq-item { border-bottom: 1px solid var(--light-border); padding: 20px 0; }
-    .faq-q { font-weight: 600; font-size: 16px; color: var(--near-black); margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
-    .faq-q::before { content: 'Q'; color: var(--cornflower); font-weight: 700; flex-shrink: 0; }
-    .faq-a { font-size: 14px; color: var(--mid-gray); line-height: 1.8; padding-left: 22px; }
-
-    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } .contact-grid { grid-template-columns: 1fr; } .contact-info-card { position: static; } }
-    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .create-grid { grid-template-columns: 1fr; }
+      .recent-grid { grid-template-columns: 1fr; }
+      .pw-section { padding: 40px 20px; }
+      .pw-contact-wrap { padding: 40px 20px 80px; }
+    }
   </style>
 </head>
 <body>
@@ -87,102 +140,84 @@
     </button>
   </nav>
 
-  <div class="page-hero">
-    <div class="page-hero-inner">
-      <div class="section-label">Partner With Me</div>
-      <h1 class="section-title">Partner With Deals Take Flight</h1>
-      <p class="section-subtitle">We connect travel brands, credit card companies, tourism boards, and travel products with an engaged Canadian audience that is actively looking to travel and save.</p>
+  <div class="pw-hero reveal">
+    <div class="pw-label">Work Together</div>
+    <h1>Let's Create Something Great</h1>
+    <p>Deals Take Flight is a growing Canadian travel community built around finding real value for real travellers. If your brand aligns with that mission, I'd love to hear from you.</p>
+  </div>
+
+  <div class="pw-section">
+    <h2 class="pw-section-title reveal">What I Create</h2>
+    <p class="pw-section-subtitle reveal">Content built for Canadian travellers, wherever they scroll.</p>
+    <div class="create-grid">
+      <div class="create-card reveal">
+        <span class="create-icon">✈️</span>
+        <span class="create-label">Flight Deal Breakdowns</span>
+      </div>
+      <div class="create-card reveal">
+        <span class="create-icon">💳</span>
+        <span class="create-label">Credit Card &amp; Points Guides</span>
+      </div>
+      <div class="create-card reveal">
+        <span class="create-icon">🌍</span>
+        <span class="create-label">Destination Inspiration</span>
+      </div>
+      <div class="create-card reveal">
+        <span class="create-icon">📱</span>
+        <span class="create-label">Short-form Social Content</span>
+      </div>
     </div>
   </div>
 
-  <section class="section">
-    <div class="section-label reveal">Services</div>
-    <h2 class="section-title reveal">How I Can Help</h2>
-    <p class="section-subtitle reveal">Tailored services for every type of Canadian traveller.</p>
-
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <span class="service-icon">📣</span>
-        <h3 class="service-name">Sponsored Content</h3>
-        <p class="service-desc">Authentic, audience-first content featuring your brand across our newsletter, social media, and website. We only partner with brands we genuinely believe in.</p>
-        <div class="service-price">Custom</div>
-        <div class="service-price-note">Pricing based on scope</div>
-        <ul class="service-features"><li>Newsletter sponsorship</li><li>Instagram &amp; TikTok integration</li><li>Website feature</li><li>Dedicated send option</li></ul>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">🔗</span>
-        <h3 class="service-name">Affiliate Partnership</h3>
-        <p class="service-desc">Performance-based partnerships where we promote your product or service to our Canadian travel audience via referral links and dedicated content.</p>
-        <div class="service-price">Revenue Share</div>
-        <div class="service-price-note">Based on agreed rate</div>
-        <ul class="service-features"><li>Referral link promotion</li><li>Dedicated blog or page feature</li><li>Social media callouts</li><li>Monthly performance report</li></ul>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">📅</span>
-        <h3 class="service-name">Book a Call</h3>
-        <p class="service-desc">Not sure where to start? Book a free 20-minute intro call to see if we are a good fit.</p>
-        <div class="service-price">Free</div>
-        <ul class="service-features"><li>20-minute Zoom call</li><li>No obligation</li><li>Quick fit assessment</li></ul>
-      </div>
+  <div class="pw-section">
+    <h2 class="pw-section-title reveal">Recent Content</h2>
+    <p class="pw-section-subtitle reveal">A sample of what Deals Take Flight looks like in action.</p>
+    <!-- Replace placeholder cards with real video screenshots and links -->
+    <div class="recent-grid">
+      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="recent-thumb">📸 Video coming soon</div>
+        <div class="recent-title">Video Title Here</div>
+        <div class="recent-tag">Instagram Reels</div>
+      </a>
+      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="recent-thumb">📸 Video coming soon</div>
+        <div class="recent-title">Video Title Here</div>
+        <div class="recent-tag">TikTok</div>
+      </a>
+      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
+        <div class="recent-thumb">📸 Video coming soon</div>
+        <div class="recent-title">Video Title Here</div>
+        <div class="recent-tag">Instagram Reels</div>
+      </a>
     </div>
+  </div>
 
-    <div class="section-label reveal">Get In Touch</div>
-    <h2 class="section-title reveal">Send a Message</h2>
-    <div style="margin-bottom:40px;"></div>
-
-    <div class="contact-grid">
-      <div class="contact-info-card reveal">
-        <h3>Ready to Fly Smarter?</h3>
-        <p>Fill out the form and I'll get back to you within 24 hours. For urgent deal questions, DM me on Instagram.</p>
-        <div class="contact-detail"><div class="contact-detail-icon">📧</div><div class="contact-detail-text"><span>Email</span><span>hello@dealstakeflight.ca</span></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">⏰</div><div class="contact-detail-text"><span>Response Time</span><span>Within 24 hours</span></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">🇨🇦</div><div class="contact-detail-text"><span>Based In</span><span>Canada</span></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">🌐</div><div class="contact-detail-text"><span>Newsletter</span><span>12,000+ subscribers</span></div></div>
-        <div class="social-row">
-          <a class="social-btn" href="#">📸 Instagram</a>
-          <a class="social-btn" href="#">🎵 TikTok</a>
-          <a class="social-btn" href="#">📬 Newsletter</a>
-        </div>
-      </div>
-
-      <div class="contact-form-wrap reveal">
-        <h3>Tell Us About Your Brand</h3>
-        <p>Share some details and we'll get back to you within 48 hours.</p>
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Alex" required></div>
-            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Johnson" required></div>
-          </div>
-          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="your@email.com" required></div>
-          <div class="form-row">
-            <div class="form-group"><label>Departure Airport</label><select><option value="">Select airport…</option><option>Toronto (YYZ)</option><option>Vancouver (YVR)</option><option>Montreal (YUL)</option><option>Calgary (YYC)</option><option>Edmonton (YEG)</option><option>Ottawa (YOW)</option><option>Winnipeg (YWG)</option><option>Halifax (YHZ)</option><option>Other</option></select></div>
-            <div class="form-group"><label>Destination</label><input type="text" placeholder="e.g. Paris, Bali, Tokyo…"></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label>Travel Window</label><input type="text" placeholder="e.g. July–August 2025"></div>
-            <div class="form-group"><label>Budget (CAD per person)</label><select><option value="">Select range…</option><option>Under $500</option><option>$500–$1,000</option><option>$1,000–$2,000</option><option>$2,000–$5,000</option><option>$5,000+ (Business Class)</option><option>Flexible / Surprise me</option></select></div>
-          </div>
-          <div class="form-group"><label>I'm Interested In</label><select><option value="">Select service…</option><option>Sponsored Content</option><option>Affiliate Partnership</option><option>Book a Call</option><option>Other</option></select></div>
-          <div class="form-group"><label>Message *</label><textarea placeholder="Tell me about your dream trip, travel style, any flexibility on dates, or anything else that would help me find you the best deal…" required></textarea></div>
-          <button type="submit" class="form-submit">Send My Message →</button>
-          <p class="form-disclaimer">Your information is never sold or shared. I'll only use it to help you find great flight deals. 🍁</p>
-        </form>
-      </div>
+  <div class="pw-section">
+    <h2 class="pw-section-title reveal">Follow the Journey</h2>
+    <div class="pw-social-group reveal">
+      <a class="pw-social-btn" href="https://www.instagram.com/dealstakeflight/" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a class="pw-social-btn" href="https://www.tiktok.com/@dealstakeflight" aria-label="TikTok" target="_blank" rel="noopener">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a class="pw-social-btn" href="https://www.youtube.com/@dealstakeflight" aria-label="YouTube" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
     </div>
-  </section>
+  </div>
 
-  <div style="background:var(--light-bg);padding:80px 0;border-top:1px solid var(--light-border);">
-    <div style="max-width:720px;margin:0 auto;padding:0 40px;">
-      <div class="section-label reveal">FAQ</div>
-      <h2 class="section-title reveal">Common Questions</h2>
-      <div class="faq-list reveal">
-        <div class="faq-item"><div class="faq-q">Are these real deals or just estimates?</div><div class="faq-a">Every deal featured on this site is verified before posting. Prices are confirmed live from booking platforms. That said, fares can change within hours — always double-check before buying.</div></div>
-        <div class="faq-item"><div class="faq-q">Do you book flights on my behalf?</div><div class="faq-a">No — I find and recommend the deals, then you book directly through the airline or booking platform. This keeps your payment information secure and ensures you have direct access to your booking.</div></div>
-        <div class="faq-item"><div class="faq-q">What airports do you cover?</div><div class="faq-a">Primarily major Canadian airports: YYZ (Toronto), YVR (Vancouver), YUL (Montreal), YYC (Calgary), and YEG (Edmonton). I also cover select secondary airports for specific deals.</div></div>
-        <div class="faq-item"><div class="faq-q">How do mistake fares work?</div><div class="faq-a">Airlines occasionally publish fares far below their intended price due to currency errors, system glitches, or manual entry mistakes. These can be ticketed and honoured — but they disappear within hours. Speed is everything.</div></div>
-        <div class="faq-item"><div class="faq-q">Can you help with points and miles redemptions?</div><div class="faq-a">Absolutely. Aeroplan, Air Miles, and credit card travel programs are part of what I cover. The Full Trip Planning service includes a review of your points balance and the best ways to use them for your trip.</div></div>
-      </div>
-    </div>
+  <div class="pw-contact-wrap reveal">
+    <h2>Interested in Working Together?</h2>
+    <p>Send a quick note and I'll get back to you within a few days. No pitch decks needed — just say hi.</p>
+    <form id="contact-form" class="pw-form">
+      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+      <div class="form-group"><label>Brand / Company (optional)</label><input type="text" placeholder="e.g. Acme Travel Co."></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me a bit about what you have in mind…" required></textarea></div>
+      <button type="submit" class="form-submit">Send a Note →</button>
+    </form>
+    <p class="form-disclaimer">I only partner with brands I genuinely believe in 🍁</p>
   </div>
 
   <footer>

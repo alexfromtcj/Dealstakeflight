@@ -12,7 +12,7 @@
 
     .lt-wrap {
       min-height: calc(100vh - var(--nav-height));
-      padding-top: calc(var(--nav-height) + 52px);
+      padding-top: calc(var(--nav-height) + 20px);
       padding-bottom: 60px;
       background: #f1f3ff;
       display: flex;
@@ -58,6 +58,26 @@
       background: var(--cornflower);
     }
 
+    .lt-btn.card-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px;
+    }
+
+    .card-img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .card-btn-text {
+      flex: 1;
+      text-align: left;
+    }
+
     .lt-subtext {
       font-size: 13px;
       color: var(--mid-gray);
@@ -74,6 +94,23 @@
       text-align: center;
       margin-top: 40px;
       margin-bottom: 16px;
+    }
+
+    .lt-heading {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: normal;
+      text-transform: none;
+      text-align: center;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 520px) {
+      .lt-wrap { padding-top: calc(var(--nav-height) + 12px); }
+      .lt-heading { margin-top: 16px; }
     }
 
     .lt-social-group {
@@ -137,23 +174,27 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
-      <div class="lt-section-label">💳 Credit Cards</div>
+      <div class="lt-heading">Credit Cards</div>
       <div class="lt-card-group">
-        <a class="lt-btn" href="https://americanexpress.com/en-ca/referral/cobalt?ref=aLEXaSS9jv&XL=MIANS">
-          <span>💳 Get the AMEX Cobalt Card</span>
-          <span>→</span>
+        <a class="lt-btn card-btn" href="https://americanexpress.com/en-ca/referral/cobalt?ref=aLEXaSS9jv&XL=MIANS">
+          <img src="assets/Cobalt.avif" alt="AMEX Cobalt Card" class="card-img">
+          <span class="card-btn-text">Get the AMEX Cobalt Card</span>
+          <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/platinum?CORID=g~R~A~E~M~B~M~J~y~m-1783035080233-343610&CPID=100631759&GENCODE=349993060860190&ref=gRAEMBMJym&v=2">
-          <span>💳 Get the AMEX Platinum Card</span>
-          <span>→</span>
+        <a class="lt-btn card-btn" href="https://www.americanexpress.com/en-ca/referral/intl/platinum?CORID=g~R~A~E~M~B~M~J~y~m-1783035080233-343610&CPID=100631759&GENCODE=349993060860190&ref=gRAEMBMJym&v=2">
+          <img src="assets/The_Platinum_Card.avif" alt="AMEX Platinum Card" class="card-img">
+          <span class="card-btn-text">Get the AMEX Platinum Card</span>
+          <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/gold-rewards-card?CORID=g~R~A~E~M~B~i~t~T~c-1783035153049-343359&CPID=100631759&GENCODE=349993177081359&ref=gRAEMBitTc&v=2">
-          <span>💳 Get the AMEX Gold Rewards Card</span>
-          <span>→</span>
+        <a class="lt-btn card-btn" href="https://www.americanexpress.com/en-ca/referral/intl/gold-rewards-card?CORID=g~R~A~E~M~B~i~t~T~c-1783035153049-343359&CPID=100631759&GENCODE=349993177081359&ref=gRAEMBitTc&v=2">
+          <img src="assets/Gold.avif" alt="AMEX Gold Rewards Card" class="card-img">
+          <span class="card-btn-text">Get the AMEX Gold Rewards Card</span>
+          <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn" href="https://www.americanexpress.com/en-ca/referral/intl/marriott-bonvoy?CORID=a~L~E~X~a~S~E~8~Y~v-1783035308537-520082&CPID=100358132&GENCODE=349993486354075&XL=MIANS&ref=aLEXaSE8Yv&v=2">
-          <span>💳 Get the AMEX Marriott Bonvoy Card</span>
-          <span>→</span>
+        <a class="lt-btn card-btn" href="https://www.americanexpress.com/en-ca/referral/intl/marriott-bonvoy?CORID=a~L~E~X~a~S~E~8~Y~v-1783035308537-520082&CPID=100358132&GENCODE=349993486354075&XL=MIANS&ref=aLEXaSE8Yv&v=2">
+          <img src="assets/marriott-bonvoy-card.avif" alt="AMEX Marriott Bonvoy Card" class="card-img">
+          <span class="card-btn-text">Get the AMEX Marriott Bonvoy Card</span>
+          <span class="btn-arrow">→</span>
         </a>
       </div>
       <p class="lt-subtext">Using these links gives you a welcome bonus and supports Deals Take Flight at no extra cost to you ✈</p>
