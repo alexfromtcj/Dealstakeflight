@@ -48,39 +48,70 @@
     .pw-section-subtitle { font-size: 15px; color: var(--mid-gray); text-align: center; max-width: 480px; margin: 0 auto 40px; }
 
     /* ── WHAT I CREATE ── */
-    .create-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .create-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .create-card {
       background: var(--white);
       border: 1px solid var(--light-border);
-      border-radius: 10px;
-      padding: 26px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
     }
-    .create-icon { font-size: 26px; color: var(--navy); flex-shrink: 0; }
-    .create-label { font-size: 15px; font-weight: 600; color: var(--near-black); }
+    .create-icon { font-size: 28px; color: var(--cornflower); margin-bottom: 12px; display: block; }
+    .create-label { font-size: 14px; font-weight: 600; color: var(--navy); }
 
-    /* ── RECENT CONTENT ── */
-    .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .recent-card { display: block; text-decoration: none; color: inherit; }
-    .recent-thumb {
-      aspect-ratio: 9 / 16;
-      background: var(--light-bg);
+    /* ── RECENT CONTENT (video cards, matches index.html) ── */
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .video-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--white);
       border: 1px solid var(--light-border);
-      border-radius: 10px;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(61,63,110,0.1); }
+    .video-thumb-wrap { position: relative; }
+    .video-thumb-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 16px;
-      font-size: 14px;
-      color: var(--mid-gray);
-      transition: border-color 0.2s;
+      color: var(--white);
+      opacity: 0.6;
+      transition: opacity 0.2s;
     }
-    .recent-card:hover .recent-thumb { border-color: var(--cornflower); }
-    .recent-title { margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--near-black); }
-    .recent-tag { margin-top: 3px; font-size: 12px; color: var(--cornflower); text-transform: uppercase; letter-spacing: 0.08em; }
+    .video-card:hover .play-overlay { opacity: 1; }
+    .video-body { padding: 16px; }
+    .video-tag {
+      display: inline-block;
+      background: rgba(107,123,196,0.12);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .video-title { font-size: 15px; font-weight: 600; color: var(--near-black); margin-bottom: 8px; }
+    .video-link { font-size: 13px; font-weight: 600; color: var(--cornflower); }
 
     /* ── SOCIAL ── */
     .pw-social-group { display: flex; flex-direction: row; justify-content: center; gap: 16px; }
@@ -99,24 +130,14 @@
     .pw-social-btn i { font-size: 28px; color: var(--white); }
     .pw-social-btn:hover { background: var(--cornflower); transform: scale(1.08); }
 
-    /* ── CONTACT FORM ── */
+    /* ── CONTACT CTA ── */
     .pw-contact-wrap { max-width: 560px; margin: 0 auto; padding: 48px 40px 100px; text-align: center; }
     .pw-contact-wrap h2 { font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 34px); color: var(--navy); margin-bottom: 10px; }
     .pw-contact-wrap > p { font-size: 15px; color: var(--mid-gray); margin-bottom: 32px; }
 
-    .pw-form { text-align: left; }
-    .form-group { margin-bottom: 18px; }
-    .form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mid-gray); margin-bottom: 7px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 12px 14px; background: var(--white); border: 1px solid var(--light-border); font-size: 15px; font-family: var(--font-body); color: var(--near-black); outline: none; transition: border-color 0.2s; border-radius: 6px; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--cornflower); }
-    .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
-    .form-submit { width: 100%; padding: 15px; background: var(--navy); color: var(--white); font-size: 15px; font-weight: 700; font-family: var(--font-body); border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
-    .form-submit:hover { background: var(--cornflower); }
-    .form-disclaimer { margin-top: 16px; font-size: 13px; color: var(--mid-gray); text-align: center; line-height: 1.6; }
-
     @media (max-width: 600px) {
-      .create-grid { grid-template-columns: 1fr; }
-      .recent-grid { grid-template-columns: 1fr; }
+      .create-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-grid { grid-template-columns: 1fr; }
       .pw-section { padding: 40px 20px; }
       .pw-contact-wrap { padding: 40px 20px 80px; }
     }
@@ -130,8 +151,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="linktree.html">Links</a></li>
-      <li><a href="contact.html" class="nav-cta">Partner With Me</a></li>
+      <li><a href="linktree.html" class="nav-cta">Links</a></li>
+      <li><a href="contact.html">Partner With Me</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Toggle menu">
       <span></span>
@@ -151,20 +172,20 @@
     <p class="pw-section-subtitle reveal">Content built for Canadian travellers, wherever they scroll.</p>
     <div class="create-grid">
       <div class="create-card reveal">
-        <span class="create-icon">✈️</span>
-        <span class="create-label">Flight Deal Breakdowns</span>
+        <i class="fa-solid fa-video create-icon"></i>
+        <div class="create-label">Short-Form Video</div>
       </div>
       <div class="create-card reveal">
-        <span class="create-icon">💳</span>
-        <span class="create-label">Credit Card &amp; Points Guides</span>
+        <i class="fa-solid fa-ticket create-icon"></i>
+        <div class="create-label">Flight Deal Breakdowns</div>
       </div>
       <div class="create-card reveal">
-        <span class="create-icon">🌍</span>
-        <span class="create-label">Destination Inspiration</span>
+        <i class="fa-solid fa-credit-card create-icon"></i>
+        <div class="create-label">Points &amp; Credit Cards</div>
       </div>
       <div class="create-card reveal">
-        <span class="create-icon">📱</span>
-        <span class="create-label">Short-form Social Content</span>
+        <i class="fa-solid fa-earth-americas create-icon"></i>
+        <div class="create-label">Destination Guides</div>
       </div>
     </div>
   </div>
@@ -172,22 +193,39 @@
   <div class="pw-section">
     <h2 class="pw-section-title reveal">Recent Content</h2>
     <p class="pw-section-subtitle reveal">A sample of what Deals Take Flight looks like in action.</p>
-    <!-- Replace placeholder cards with real video screenshots and links -->
-    <div class="recent-grid">
-      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="recent-thumb">📸 Video coming soon</div>
-        <div class="recent-title">Video Title Here</div>
-        <div class="recent-tag">Instagram Reels</div>
+    <div class="video-grid">
+      <a class="video-card reveal" href="https://www.instagram.com/dealstakeflight/reel/DaBjEp2PD0_/" target="_blank" rel="noopener">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb-img" src="assets/IMG_1924.jpeg" alt="New Direct Flights to Brazil">
+          <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">Instagram Reels</span>
+          <div class="video-title">New Direct Flights to Brazil 🇨🇦🇧🇷</div>
+          <span class="video-link">Watch →</span>
+        </div>
       </a>
-      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="recent-thumb">📸 Video coming soon</div>
-        <div class="recent-title">Video Title Here</div>
-        <div class="recent-tag">TikTok</div>
+      <a class="video-card reveal" href="https://www.instagram.com/dealstakeflight/reel/DZx55jnyXS5/" target="_blank" rel="noopener">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb-img" src="assets/IMG_1925.jpeg" alt="Toronto to Madrid">
+          <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">Instagram Reels</span>
+          <div class="video-title">Toronto to Madrid 🇨🇦🇪🇸</div>
+          <span class="video-link">Watch →</span>
+        </div>
       </a>
-      <a class="recent-card reveal" href="#" target="_blank" rel="noopener">
-        <div class="recent-thumb">📸 Video coming soon</div>
-        <div class="recent-title">Video Title Here</div>
-        <div class="recent-tag">Instagram Reels</div>
+      <a class="video-card reveal" href="https://www.tiktok.com/@dealstakeflight/video/7646894318044630280" target="_blank" rel="noopener">
+        <div class="video-thumb-wrap">
+          <img class="video-thumb-img" src="assets/IMG_1926.jpeg" alt="Halifax to Europe for Under $550 Roundtrip Nonstop">
+          <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">TikTok</span>
+          <div class="video-title">Halifax to Europe for Under $550 Roundtrip Nonstop</div>
+          <span class="video-link">Watch →</span>
+        </div>
       </a>
     </div>
   </div>
@@ -209,15 +247,8 @@
 
   <div class="pw-contact-wrap reveal">
     <h2>Interested in Working Together?</h2>
-    <p>Send a quick note and I'll get back to you within a few days. No pitch decks needed — just say hi.</p>
-    <form id="contact-form" class="pw-form">
-      <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required></div>
-      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
-      <div class="form-group"><label>Brand / Company (optional)</label><input type="text" placeholder="e.g. Acme Travel Co."></div>
-      <div class="form-group"><label>Message</label><textarea placeholder="Tell me a bit about what you have in mind…" required></textarea></div>
-      <button type="submit" class="form-submit">Send a Note →</button>
-    </form>
-    <p class="form-disclaimer">I only partner with brands I genuinely believe in 🍁</p>
+    <p>Send a note and I'll get back to you within a few days. No pitch decks needed — just say hi.</p>
+    <a href="mailto:dealstakeflight@gmail.com" class="btn-primary" style="display:inline-block; padding: 16px 40px; font-size:15px;">✉ Get In Touch</a>
   </div>
 
   <footer>
