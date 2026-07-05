@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deals Take Flight — Canadian Travel Deals</title>
+  <title>Deals Take Flight. Canadian Travel Deals</title>
   <meta name="description" content="Discover the best flight deals departing from Canada. Business class upgrades, mistake fares, and curated travel savings for Canadians.">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -183,16 +183,34 @@
 
     #videos { padding-top: 40px; }
 
-    footer { padding: 30px 40px 20px; }
+    /* ── FOOTER ── */
+    footer { background: var(--navy); padding: 0; }
     .footer-top {
-      grid-template-columns: 1fr 1fr;
-      padding-bottom: 24px;
-      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: center;
+      padding: 28px 40px;
+      gap: 0;
+      margin-bottom: 0;
+      border-bottom: none;
     }
-    .footer-col a { display: inline-block; margin-right: 20px; }
-    .footer-brand p { font-size: 13px; }
-    .footer-col h4 { margin-bottom: 8px; }
-    .footer-bottom { padding-top: 16px; }
+    .footer-logo-img { height: 110px; width: auto; display: block; }
+    .footer-nav-heading { font-family: var(--font-display); font-size: 20px; color: var(--white); font-weight: 400; margin-bottom: 12px; }
+    .footer-nav-links { display: flex; flex-wrap: wrap; gap: 24px; }
+    .footer-nav-links a { font-size: 14px; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s; }
+    .footer-nav-links a:hover { color: var(--white); }
+    .footer-bottom {
+      display: block;
+      padding: 8px 60px 8px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .footer-top { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 24px; padding: 40px 24px; }
+      .footer-nav-links { justify-content: center; gap: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -203,8 +221,8 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="linktree.html" class="nav-cta">Links</a></li>
       <li><a href="contact.html">Partner With Me</a></li>
+      <li><a href="linktree.html" class="nav-cta">Links</a></li>
     </ul>
     <button class="nav-hamburger" aria-label="Toggle menu">
       <span></span>
@@ -300,7 +318,7 @@
 
   <div class="divider-section">
     <h2>Built for <em style="font-style:italic;color:var(--cornflower);">Canadian Travellers</em></h2>
-    <p>Real deals, real savings, real adventures — follow along on Instagram, TikTok, and YouTube.</p>
+    <p>Real deals, real savings, real adventures. Follow along on social media!</p>
     <div class="platform-icon-group" style="justify-content:center;">
       <a class="platform-icon-btn" href="https://www.instagram.com/dealstakeflight/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
       <a class="platform-icon-btn" href="https://www.tiktok.com/@dealstakeflight" aria-label="TikTok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
@@ -312,17 +330,20 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="nav-logo">
-            <img src="assets/logo.jpg" alt="Deals Take Flight" class="nav-logo-img">
-            <span class="nav-logo-text"><span>Deals Take Flight</span><span style="color:var(--periwinkle-mid);">🍁 Canadian Travel Deals</span></span>
+          <a href="index.html">
+            <img src="assets/DTF logo square no background dark back ground.png" alt="Deals Take Flight" class="footer-logo-img">
           </a>
-          <p>Helping Canadians fly smarter. Real deals. Real savings. Real adventures.</p>
         </div>
-        <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="linktree.html">Links</a><a href="contact.html">Partner With Me</a></div>
+        <div class="footer-nav-col">
+          <h3 class="footer-nav-heading">Navigate</h3>
+          <div class="footer-nav-links">
+            <a href="index.html">Home</a>
+            <a href="linktree.html">Links</a>
+            <a href="contact.html">Partner With Me</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2025 Deals Take Flight 🍁</span>
-      </div>
+      <div class="footer-bottom">© 2026 Deals Take Flight</div>
     </div>
   </footer>
 
