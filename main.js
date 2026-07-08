@@ -44,6 +44,18 @@ if (hamburger) {
   });
 }
 
+// Hero carousel: pause auto-scroll animation while the user touches it
+const heroPhotoCol = document.querySelector('.hero-photo-col');
+const heroCarouselTrack = document.querySelector('.photo-scroll-track');
+if (heroPhotoCol && heroCarouselTrack) {
+  heroPhotoCol.addEventListener('touchstart', () => {
+    heroCarouselTrack.style.animationPlayState = 'paused';
+  }, { passive: true });
+  heroPhotoCol.addEventListener('touchend', () => {
+    heroCarouselTrack.style.animationPlayState = 'running';
+  }, { passive: true });
+}
+
 // Contact form: confirmation on submit
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {

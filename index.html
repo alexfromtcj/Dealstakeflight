@@ -65,9 +65,7 @@
         margin-top: 16px;
         padding-top: 0;
         padding-bottom: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
+        overflow: hidden;
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
         mask-image: none;
@@ -76,7 +74,7 @@
       .hero-photo-col::-webkit-scrollbar { display: none; }
       .photo-scroll-track {
         flex-direction: row;
-        animation: none;
+        animation: scrollCarousel 34s linear infinite;
         width: max-content;
         height: 100%;
         gap: 8px;
@@ -86,7 +84,8 @@
         height: 220px;
         object-fit: cover;
         object-position: center top;
-        scroll-snap-align: start;
+        border-radius: 12px;
+        flex-shrink: 0;
       }
     }
 
@@ -175,6 +174,7 @@
 
     @media (max-width: 900px) {
       .video-grid { grid-template-columns: 1fr; }
+      .video-thumb, .video-thumb-img { height: 420px; max-height: 420px; }
     }
 
     @media (min-width: 900px) {
@@ -348,21 +348,5 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    (function() {
-      var strip = document.querySelector('.hero-photo-col');
-      if (!strip) return;
-      function step() {
-        if (window.innerWidth <= 899) {
-          strip.scrollLeft += 1;
-          if (strip.scrollLeft >= strip.scrollWidth - strip.clientWidth) {
-            strip.scrollLeft = 0;
-          }
-        }
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    })();
-  </script>
 </body>
 </html>
