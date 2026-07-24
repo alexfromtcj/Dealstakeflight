@@ -113,6 +113,50 @@
       .lt-heading { margin-top: 16px; }
     }
 
+    .lt-heading-airlines {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    .lt-airline-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .lt-airline-btn {
+      min-height: 80px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .lt-airline-btn:hover {
+      background: var(--cornflower);
+    }
+
+    .lt-airline-subtext {
+      font-size: 12px;
+      color: var(--mid-gray);
+      text-align: center;
+      margin-top: 10px;
+    }
+
     .lt-social-group {
       display: flex;
       flex-direction: row;
@@ -174,6 +218,13 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
+      <div class="lt-heading-airlines">Current Airline Sales</div>
+      <div class="lt-airline-grid">
+        <a class="lt-airline-btn" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:RapidResponse:PRJAC40000133:URL4706:homepagesalesbanner#worldwide-15ntp-URL4706-modal" target="_blank" rel="noopener">Air Canada</a>
+        <a class="lt-airline-btn" href="https://www.westjet.com/en-ca/deals?i_cid=wj:wj-hp:hero1:ss-wj:15-sw-pc-sale&#id-6A7C634050D80D9B2E4E3CB3D7C690F641CFFBE5DE94C3A121C8CF172B2E5DB0-tab-0" target="_blank" rel="noopener">WestJet</a>
+        <a class="lt-airline-btn" href="https://www.flyporter.com/en-ca/special-offers/seat-discount-sale?promocode=7ZINQ1" target="_blank" rel="noopener">Porter</a>
+        <a class="lt-airline-btn" href="https://www.airtransat.com/en-CA/deals/promo-code?ici=homepage&icn=showbox_promocode-23-juillet-2026&search=flight&flightType=RT&gateway=AIRPORT_YWG&pax=1-0-0-0-0" target="_blank" rel="noopener">Air Transat</a>
+      </div>
       <div class="lt-heading">Credit Cards</div>
       <div class="lt-card-group">
         <a class="lt-btn card-btn" href="https://americanexpress.com/en-ca/referral/cobalt?ref=aLEXaSS9jv&XL=MIANS">
