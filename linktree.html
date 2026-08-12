@@ -98,14 +98,14 @@
 
     .lt-heading {
       font-family: var(--font-display);
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--navy);
       letter-spacing: normal;
       text-transform: none;
       text-align: center;
-      margin-top: 24px;
-      margin-bottom: 16px;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
 
     @media (max-width: 520px) {
@@ -115,12 +115,12 @@
 
     .lt-heading-airlines {
       font-family: var(--font-display);
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--navy);
       text-align: center;
-      margin-top: 32px;
-      margin-bottom: 16px;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
 
     .lt-airline-grid {
@@ -148,6 +148,34 @@
 
     .lt-airline-btn:hover {
       background: var(--cornflower);
+    }
+
+    .lt-sale-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .lt-btn-current-sale {
+      text-align: left;
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
+
+    .lt-btn-current-sale-text {
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      font-size: clamp(14px, 4vw, 17px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lt-btn.lt-sale-btn {
+      min-height: 56px;
+      font-size: 15px;
+      text-align: center;
+      justify-content: center;
     }
 
     .lt-airline-subtext {
@@ -218,14 +246,30 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
+      <div class="lt-heading-airlines">20% Off Airline Sale 🔥</div>
+      <div class="lt-sale-grid">
+        <a class="lt-btn lt-sale-btn" href="https://www.westjet.com/en-ca/deals?i_cid=wj:wj-hp:hero1:ss-wj:pc-cr-sale&#pc-cr-sale" target="_blank" rel="noopener">
+          <span>WestJet</span>
+        </a>
+        <a class="lt-btn lt-sale-btn" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=MMT4DI" target="_blank" rel="noopener">
+          <span>Porter</span>
+        </a>
+        <a class="lt-btn lt-sale-btn" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:MatchSale:PRJNE1162:URL4709::HPsalebanner#lastminutediscounts" target="_blank" rel="noopener">
+          <span>Air Canada</span>
+        </a>
+        <a class="lt-btn lt-sale-btn" href="https://www.airtransat.com/en-CA/deals/promo-code?ici=homepage&icn=showbox_promocode-6-aout-2026&search=flight&flightType=RT&gateway=AIRPORT_YWG&pax=1-0-0-0-0" target="_blank" rel="noopener">
+          <span>Air Transat</span>
+        </a>
+      </div>
+
       <div class="lt-heading-airlines">Current Airline Sales</div>
       <div class="lt-card-group">
-        <a class="lt-btn" href="https://www.google.com/travel/flights/search?tfs=CBwQAhonEgoyMDI2LTExLTI1agwIAxIIL20vMGg3aDZyCwgDEgcvbS8wajExGicSCjIwMjYtMTItMDJqCwgDEgcvbS8wajExcgwIAxIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&hl=en&gl=CA" target="_blank" rel="noopener">
-          <span>✈ Toronto to Aruba</span>
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhonEgoyMDI2LTExLTI1agwIAxIIL20vMGg3aDZyCwgDEgcvbS8wajExGicSCjIwMjYtMTItMDJqCwgDEgcvbS8wajExcgwIAxIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&hl=en&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Aruba</span>
           <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn" href="https://www.google.ca/travel/flights/search?tfs=CBwQAho0EgoyMDI2LTA5LTEyMgJDWmoHCAESA1lWUnIHCAESA0JLS3IHCAESA01OTHIHCAESA1NHTho0EgoyMDI2LTA5LTI5MgJDWmoHCAESA0JLS2oHCAESA01OTGoHCAESA1NHTnIHCAESA1lWUkABSAFwAYIBCwj___________8BmAEB&tfu=EgIIACIA" target="_blank" rel="noopener">
-          <span>✈ Vancouver to Southeast Asia</span>
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.ca/travel/flights/search?tfs=CBwQAho0EgoyMDI2LTA5LTEyMgJDWmoHCAESA1lWUnIHCAESA0JLS3IHCAESA01OTHIHCAESA1NHTho0EgoyMDI2LTA5LTI5MgJDWmoHCAESA0JLS2oHCAESA01OTGoHCAESA1NHTnIHCAESA1lWUkABSAFwAYIBCwj___________8BmAEB&tfu=EgIIACIA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Vancouver to Southeast Asia</span>
           <span class="btn-arrow">→</span>
         </a>
       </div>
