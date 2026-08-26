@@ -115,30 +115,81 @@
       .lt-heading { margin-top: 16px; }
     }
 
-    .airline-sales-toggle,
-    .credit-cards-toggle {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(135deg, #d6d6f0 0%, #6772bb 100%);
-      border-radius: 12px;
-      padding: 16px 20px;
+    .accordion-wrapper {
+      position: relative;
+      height: 56px;
+      width: 100%;
       margin-bottom: 12px;
-      box-shadow: 0 4px 16px rgba(61,63,110,0.2), 0 1px 4px rgba(61,63,110,0.1);
       cursor: pointer;
     }
 
-    .airline-sales-toggle.open,
-    .credit-cards-toggle.open {
-      border-radius: 12px 12px 0 0;
+    .accordion-toggle {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #d6d6f0 0%, #6772bb 100%);
+      box-shadow: 0 4px 16px rgba(61,63,110,0.2), 0 1px 4px rgba(61,63,110,0.1);
+      transition: background 0.4s ease, border-radius 0.4s ease;
     }
 
-    .airline-sales-title,
-    .credit-cards-title {
+    .accordion-wrapper.open .accordion-toggle {
+      border-radius: 50px 50px 0 0;
+      background: linear-gradient(135deg, #6772bb 0%, #d6d6f0 100%);
+    }
+
+    .accordion-title {
+      position: relative;
+      z-index: 3;
       font-family: var(--font-display);
       font-size: 18px;
       font-weight: 700;
       color: #000000;
+      text-align: center;
+      transition: color 0.4s ease;
+      pointer-events: none;
+    }
+
+    .accordion-wrapper.open .accordion-title {
+      color: #ffffff;
+    }
+
+    .accordion-knob {
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: left 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .accordion-wrapper.open .accordion-knob {
+      left: calc(100% - 52px);
+    }
+
+    .accordion-plane-icon {
+      display: inline-block;
+      font-size: 18px;
+      color: var(--navy);
+      transform: rotate(-45deg);
+      transition: transform 0.4s ease;
+    }
+
+    .accordion-wrapper.open .accordion-plane-icon {
+      transform: rotate(45deg);
     }
 
     .collapsible-content {
@@ -171,14 +222,6 @@
       margin-bottom: 8px;
     }
 
-    .accordion-chevron {
-      font-size: 14px;
-      color: #000000;
-      transition: transform 0.3s ease;
-    }
-    .accordion-chevron.rotated {
-      transform: rotate(180deg);
-    }
 
     .lt-airline-grid {
       display: grid;
@@ -291,28 +334,14 @@
     <div class="lt-inner">
 
       <div class="accordion-section">
-      <div class="airline-sales-toggle">
-        <span class="airline-sales-title">Current Airline Sales</span>
-        <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+      <div class="accordion-wrapper domestic-sales-toggle">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Domestic Flight Sales</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
       </div>
-      <div id="airline-sales-content" class="collapsible-content">
+      <div id="domestic-sales-content" class="collapsible-content">
       <div class="lt-card-group">
-        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhonEgoyMDI2LTEyLTA0agwIAxIIL20vMGg3aDZyCwgCEgcvbS8wajExGicSCjIwMjYtMTItMTFqCwgCEgcvbS8wajExcgwIAxIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Toronto to Aruba</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTE0KABqDAgCEggvbS8wcG1xMnINCAISCS9tLzAzY3B2MxorEgoyMDI2LTExLTIxKABqDQgCEgkvbS8wM2NwdjNyDAgCEggvbS8wcG1xMkABSAFgkANwAYIBCwj___________8BmAEB&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Winnipeg to Costa Rica</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTEyKABqDAgDEggvbS8waDdoNnINCAISCS9tLzAxNzd4bRorEgoyMDI2LTExLTE5KABqDQgCEgkvbS8wMTc3eG1yDAgDEggvbS8waDdoNkABSAFg9ANwAYIBCwj___________8BmAEB&tfu=EgIIAA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Toronto to Belize</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpzEgoyMDI2LTEyLTA0Ih8KA1lZWhIKMjAyNi0xMi0wNBoDTElTKgJUUDIDMjYyIiAKA0xJUxIKMjAyNi0xMi0wNRoDUERMKgJUUDIEMTg2MzoCUzRg9AhqDAgCEggvbS8waDdoNnINCAISCS9tLzAycGhjMRpzEgoyMDI2LTEyLTEzIiAKA1BETBIKMjAyNi0xMi0xMxoDTElTKgJUUDIEMTg2MCIfCgNMSVMSCjIwMjYtMTItMTMaA1lZWioCVFAyAzI2MToCUzRg9AhqDQgCEgkvbS8wMnBoYzFyDAgCEggvbS8waDdoNkABSANwAYIBCwj___________8BmAEB&tfu=CnRDalJJYUhadmFsWXpUbGt5YzFGQlFXRnNlR2RDUnkwdExTMHRMUzB0YjNsaVkyTXlNRUZCUVVGQlIzRkZjalp6UkhWemNrTkJFZ3hVVURFNE5qQjhWRkF5TmpFYUN3aVU1d3dRQWhvRFEwRkVPQnh3dFpzShICCAAiAA&hl=en&gl=CA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Toronto to Ponta Delgada</span>
-          <span class="btn-arrow">→</span>
-        </a>
         <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpBEgoyMDI2LTEyLTEwIh8KA1lWUhIKMjAyNi0xMi0xMBoDWVdHKgJBQzIDMjk0KABqBwgBEgNZVlJyBwgBEgNZV0dAAUgDcAGCAQsI____________AZgBAg&tfu=CmxDalJJTjJwV2JYVmhNSGd5VlZsQlJtRjRRbWRDUnkwdExTMHRMUzB0TFMxdmVYTnNNMEZCUVVGQlIzRlFRVTVyUWxGaGJUQkJFZ1ZCUXpJNU5Cb0xDT0xlQVJBQ0dnTkRRVVE0SEhETG9BRT0SAggAIgMKATA&hl=en&gl=ca&curr=CAD" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Vancouver to Winnipeg</span>
           <span class="btn-arrow">→</span>
@@ -333,12 +362,47 @@
       </div>
       </div>
       <div class="accordion-section">
-      <div class="credit-cards-toggle open">
-        <span class="credit-cards-title">Credit Cards</span>
-        <i class="fa-solid fa-chevron-down accordion-chevron rotated"></i>
+      <div class="accordion-wrapper international-sales-toggle">
+        <div class="accordion-toggle">
+          <span class="accordion-title">International Flight Sales</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
+      </div>
+      <div id="international-sales-content" class="collapsible-content">
+      <div class="lt-card-group">
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhonEgoyMDI2LTEyLTA0agwIAxIIL20vMGg3aDZyCwgCEgcvbS8wajExGicSCjIwMjYtMTItMTFqCwgCEgcvbS8wajExcgwIAxIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Aruba</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTE0KABqDAgCEggvbS8wcG1xMnINCAISCS9tLzAzY3B2MxorEgoyMDI2LTExLTIxKABqDQgCEgkvbS8wM2NwdjNyDAgCEggvbS8wcG1xMkABSAFgkANwAYIBCwj___________8BmAEB&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Winnipeg to Costa Rica</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTEyKABqDAgDEggvbS8waDdoNnINCAISCS9tLzAxNzd4bRorEgoyMDI2LTExLTE5KABqDQgCEgkvbS8wMTc3eG1yDAgDEggvbS8waDdoNkABSAFg9ANwAYIBCwj___________8BmAEB&tfu=EgIIAA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Belize</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpzEgoyMDI2LTEyLTA0Ih8KA1lZWhIKMjAyNi0xMi0wNBoDTElTKgJUUDIDMjYyIiAKA0xJUxIKMjAyNi0xMi0wNRoDUERMKgJUUDIEMTg2MzoCUzRg9AhqDAgCEggvbS8waDdoNnINCAISCS9tLzAycGhjMRpzEgoyMDI2LTEyLTEzIiAKA1BETBIKMjAyNi0xMi0xMxoDTElTKgJUUDIEMTg2MCIfCgNMSVMSCjIwMjYtMTItMTMaA1lZWioCVFAyAzI2MToCUzRg9AhqDQgCEgkvbS8wMnBoYzFyDAgCEggvbS8waDdoNkABSANwAYIBCwj___________8BmAEB&tfu=CnRDalJJYUhadmFsWXpUbGt5YzFGQlFXRnNlR2RDUnkwdExTMHRMUzB0YjNsaVkyTXlNRUZCUVVGQlIzRkZjalp6UkhWemNrTkJFZ3hVVURFNE5qQjhWRkF5TmpFYUN3aVU1d3dRQWhvRFEwRkVPQnh3dFpzShICCAAiAA&hl=en&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Ponta Delgada</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+      </div>
+      </div>
+      <div class="accordion-section">
+      <div class="accordion-wrapper credit-cards-toggle open">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Credit Cards</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
       </div>
       <div id="credit-cards-content" class="collapsible-content open">
       <div class="lt-card-group">
+        <a class="lt-btn card-btn" href="https://dealstakeflight.finlywealth.com/credit-cards/details/amex-marriot-bonvoy">
+          <img src="card-images/marriott-bonvoy-card.avif" alt="AMEX Marriott Bonvoy Card" class="card-img">
+          <span class="card-btn-text">Get the AMEX Marriott Bonvoy Card</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a class="lt-btn card-btn" href="https://dealstakeflight.finlywealth.com/rebates/credit-cards/bmo-viporter-world-elite-mastercard" target="_blank">
           <img src="card-images/BMO VIPorter World Elite.png" alt="BMO VIPorter World Elite Mastercard" class="card-img">
           <span class="card-btn-text">Get the BMO VIPorter World Elite Mastercard</span>
@@ -374,11 +438,6 @@
           <span class="card-btn-text">Get the AMEX Gold Rewards Card</span>
           <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn card-btn" href="https://dealstakeflight.finlywealth.com/credit-cards/details/amex-marriot-bonvoy">
-          <img src="card-images/marriott-bonvoy-card.avif" alt="AMEX Marriott Bonvoy Card" class="card-img">
-          <span class="card-btn-text">Get the AMEX Marriott Bonvoy Card</span>
-          <span class="btn-arrow">→</span>
-        </a>
         <a href="https://dealstakeflight.finlywealth.com/credit-cards/compare" class="lt-btn card-btn" target="_blank" rel="noopener">
           <img src="card-images/Deals Card.png" alt="Compare Top Credit Cards" class="card-img">
           <span class="card-btn-text">Compare Top Credit Cards</span>
@@ -409,39 +468,25 @@
 
   <script src="main.js"></script>
   <script>
-    const heading = document.querySelector('.airline-sales-toggle')
-    const content = document.getElementById('airline-sales-content')
-    const chevron = heading.querySelector('.accordion-chevron')
+    function initAccordion(toggleClass, contentId) {
+      const heading = document.querySelector('.' + toggleClass)
+      const content = document.getElementById(contentId)
 
-    heading.addEventListener('click', () => {
-      const isOpen = content.classList.contains('open')
-      if (isOpen) {
-        content.classList.remove('open')
-        heading.classList.remove('open')
-        chevron.classList.remove('rotated')
-      } else {
-        content.classList.add('open')
-        heading.classList.add('open')
-        chevron.classList.add('rotated')
-      }
-    })
+      heading.addEventListener('click', () => {
+        const isOpen = content.classList.contains('open')
+        if (isOpen) {
+          content.classList.remove('open')
+          heading.classList.remove('open')
+        } else {
+          content.classList.add('open')
+          heading.classList.add('open')
+        }
+      })
+    }
 
-    const cardsHeading = document.querySelector('.credit-cards-toggle')
-    const cardsContent = document.getElementById('credit-cards-content')
-    const cardsChevron = cardsHeading.querySelector('.accordion-chevron')
-
-    cardsHeading.addEventListener('click', () => {
-      const isOpen = cardsContent.classList.contains('open')
-      if (isOpen) {
-        cardsContent.classList.remove('open')
-        cardsHeading.classList.remove('open')
-        cardsChevron.classList.remove('rotated')
-      } else {
-        cardsContent.classList.add('open')
-        cardsHeading.classList.add('open')
-        cardsChevron.classList.add('rotated')
-      }
-    })
+    initAccordion('domestic-sales-toggle', 'domestic-sales-content')
+    initAccordion('international-sales-toggle', 'international-sales-content')
+    initAccordion('credit-cards-toggle', 'credit-cards-content')
   </script>
 </body>
 </html>
