@@ -382,7 +382,7 @@
           <span class="lt-btn-current-sale-text">✈ Toronto to Aruba</span>
           <span class="btn-arrow">→</span>
         </a>
-        <a class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTEyKABqDAgDEggvbS8waDdoNnINCAISCS9tLzAxNzd4bRorEgoyMDI2LTExLTE5KABqDQgCEgkvbS8wMTc3eG1yDAgDEggvbS8waDdoNkABSAFg9ANwAYIBCwj___________8BmAEB&tfu=EgIIAA" target="_blank" rel="noopener">
+        <a id="toronto-belize-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTEyKABqDAgDEggvbS8waDdoNnINCAISCS9tLzAxNzd4bRorEgoyMDI2LTExLTE5KABqDQgCEgkvbS8wMTc3eG1yDAgDEggvbS8waDdoNkABSAFg9ANwAYIBCwj___________8BmAEB&tfu=EgIIAA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Belize</span>
           <span class="btn-arrow">→</span>
         </a>
@@ -487,6 +487,23 @@
     initAccordion('domestic-sales-toggle', 'domestic-sales-content')
     initAccordion('international-sales-toggle', 'international-sales-content')
     initAccordion('credit-cards-toggle', 'credit-cards-content')
+
+    function checkBelizeExpiry() {
+      const expiryTime = new Date('2026-09-03T17:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('toronto-belize-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkBelizeExpiry();
   </script>
 </body>
 </html>
