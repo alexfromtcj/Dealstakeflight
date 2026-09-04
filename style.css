@@ -137,6 +137,9 @@ footer { background: var(--near-black); color: rgba(255,255,255,0.45); padding: 
 .footer-col a { display: block; color: rgba(255,255,255,0.3); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
 .footer-col a:hover { color: rgba(255,255,255,0.75); }
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-legal { display: inline-block; margin-top: 6px; }
+.footer-legal a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: var(--white); }
 
 /* ── PAGE HERO ── */
 .page-hero { padding-top: var(--nav-height); background: var(--near-black); padding-bottom: 60px; position: relative; overflow: hidden; }
