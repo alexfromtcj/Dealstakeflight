@@ -370,7 +370,7 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
-        <a class="lt-btn lt-btn-current-sale" href="https://www.icelandair.com/en-ca/flights/special-offer/" target="_blank" rel="noopener">
+        <a id="iceland-btn" class="lt-btn lt-btn-current-sale" href="https://www.icelandair.com/en-ca/flights/special-offer/" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ HFX, TOR &amp; VAN to Iceland</span>
           <span class="btn-arrow">→</span>
         </a>
@@ -504,6 +504,23 @@
       }
     }
     checkBelizeExpiry();
+
+    function checkIcelandExpiry() {
+      const expiryTime = new Date('2026-09-14T23:30:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('iceland-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkIcelandExpiry();
   </script>
 </body>
 </html>
