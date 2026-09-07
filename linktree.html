@@ -374,6 +374,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="vancouver-sydney-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CAIQAhpuEgoyMDI3LTAzLTA2Ih8KA1lWUhIKMjAyNy0wMy0wNhoDTkFOKgJGSjIDODgxIh8KA05BThIKMjAyNy0wMy0wOBoDU1lEKgJGSjIDOTExMgJGSmoMCAMSCC9tLzA4MGgycgwIAhIIL20vMDZ5NTcabhIKMjAyNy0wMy0zMCIfCgNTWUQSCjIwMjctMDMtMzAaA05BTioCRkoyAzkxMCIfCgNOQU4SCjIwMjctMDMtMzAaA1lWUioCRkoyAzg4MDICRkpqDAgCEggvbS8wNnk1N3IMCAMSCC9tLzA4MGgyQAFIAWDcC3ABggELCP___________wGYAQE&source=flre_fli_share&utm_campaign=sharing" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Vancouver to Sydney</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="vancouver-honolulu-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights?tfs=CBsQAhpqEgoyMDI2LTExLTE5OgJTNDoCTVNqDAgCEggvbS8wcG1xMmoMCAMSCC9tLzBoN2g2agwIAxIIL20vMDUycDdqDAgDEggvbS8wMXIzMmoMCAMSCC9tLzA4MGgycg4IAhIKL20vMDJocmgwXxpqEgoyMDI2LTExLTI2OgJTNDoCTVNqDggCEgovbS8wMmhyaDBfcgwIAhIIL20vMHBtcTJyDAgDEggvbS8waDdoNnIMCAMSCC9tLzA1MnA3cgwIAxIIL20vMDFyMzJyDAgDEggvbS8wODBoMkABSAFSA0NBRHABemxDalJJYldKS1gwOVJSeTFrVDJOQlJpMHhNMUZDUnkwdExTMHRMUzF2YTNkNk9TMXVNVUZCUVVGQlIzRmlSMFZSUVdWWFNUUkJFZ1pYVXpFNE5qSWFDd2piMndJUUFob0RRMEZFT0J4d292c0KYAQGyARQYASABKg4IAhIKL20vMDJocmgwXw&tfu=GioaKAoSCQIQo9SJUVFAEQBY8XditR7AEhIJcR40LoDfPcARQHVA7NT6ZUA&hl=en-US&gl=CA&sa=X&ved=0CAIQtY0DKABqGAoTCPCP4LzQ1ZYDFQAAAAAdAAAAABDfBg" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Vancouver to Honolulu</span>
           <span class="btn-arrow">→</span>
@@ -556,6 +560,23 @@
       }
     }
     checkTorontoCostRicaExpiry();
+
+    function checkVancouverSydneyExpiry() {
+      const expiryTime = new Date('2026-09-14T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('vancouver-sydney-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkVancouverSydneyExpiry();
   </script>
 </body>
 </html>
