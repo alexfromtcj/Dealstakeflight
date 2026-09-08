@@ -338,6 +338,30 @@
     <div class="lt-inner">
 
       <div class="accordion-section">
+      <div class="accordion-wrapper airline-seat-sales-toggle">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Airline Seat Sales 🔥</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
+      </div>
+      <div id="airline-seat-sales-content" class="collapsible-content">
+      <div class="lt-card-group">
+        <a id="westjet-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.westjet.com/en-ca/deals/labour-day?i_cid=wj:wj-hp:hero1:ss-wj:labour-day-sale" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ WestJet Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="aircanada-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:SeptWWSS2026:PRJAC40000205:URL4941:videocta" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Canada Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="porter-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=3M2E7J" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Porter Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+      </div>
+      </div>
+      <div class="accordion-section">
       <div class="accordion-wrapper domestic-sales-toggle">
         <div class="accordion-toggle">
           <span class="accordion-title">Domestic Flight Sales</span>
@@ -400,30 +424,6 @@
         </a>
         <a id="toronto-belize-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI2LTExLTEyKABqDAgDEggvbS8waDdoNnINCAISCS9tLzAxNzd4bRorEgoyMDI2LTExLTE5KABqDQgCEgkvbS8wMTc3eG1yDAgDEggvbS8waDdoNkABSAFg9ANwAYIBCwj___________8BmAEB&tfu=EgIIAA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Belize</span>
-          <span class="btn-arrow">→</span>
-        </a>
-      </div>
-      </div>
-      </div>
-      <div class="accordion-section">
-      <div class="accordion-wrapper airline-seat-sales-toggle open">
-        <div class="accordion-toggle">
-          <span class="accordion-title">Airline Seat Sales 🔥</span>
-        </div>
-        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
-      </div>
-      <div id="airline-seat-sales-content" class="collapsible-content open">
-      <div class="lt-card-group">
-        <a id="westjet-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.westjet.com/en-ca/deals/labour-day?i_cid=wj:wj-hp:hero1:ss-wj:labour-day-sale" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ WestJet Seat Sale</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a id="aircanada-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:SeptWWSS2026:PRJAC40000205:URL4941:videocta" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Air Canada Seat Sale</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a id="porter-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=3M2E7J" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Porter Seat Sale</span>
           <span class="btn-arrow">→</span>
         </a>
       </div>
@@ -530,9 +530,9 @@
       })
     }
 
+    initAccordion('airline-seat-sales-toggle', 'airline-seat-sales-content')
     initAccordion('domestic-sales-toggle', 'domestic-sales-content')
     initAccordion('international-sales-toggle', 'international-sales-content')
-    initAccordion('airline-seat-sales-toggle', 'airline-seat-sales-content')
     initAccordion('credit-cards-toggle', 'credit-cards-content')
 
     function checkBelizeExpiry() {
