@@ -406,6 +406,30 @@
       </div>
       </div>
       <div class="accordion-section">
+      <div class="accordion-wrapper airline-seat-sales-toggle open">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Airline Seat Sales 🔥</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
+      </div>
+      <div id="airline-seat-sales-content" class="collapsible-content open">
+      <div class="lt-card-group">
+        <a id="westjet-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.westjet.com/en-ca/deals/labour-day?i_cid=wj:wj-hp:hero1:ss-wj:labour-day-sale" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ WestJet Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="aircanada-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:SeptWWSS2026:PRJAC40000205:URL4941:videocta" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Canada Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="porter-seat-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=3M2E7J" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Porter Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+      </div>
+      </div>
+      <div class="accordion-section">
       <div class="accordion-wrapper credit-cards-toggle open">
         <div class="accordion-toggle">
           <span class="accordion-title">Credit Cards</span>
@@ -508,6 +532,7 @@
 
     initAccordion('domestic-sales-toggle', 'domestic-sales-content')
     initAccordion('international-sales-toggle', 'international-sales-content')
+    initAccordion('airline-seat-sales-toggle', 'airline-seat-sales-content')
     initAccordion('credit-cards-toggle', 'credit-cards-content')
 
     function checkBelizeExpiry() {
@@ -577,6 +602,26 @@
       }
     }
     checkVancouverSydneyExpiry();
+
+    function checkAirlineSeatSaleExpiry() {
+      const expiryTime = new Date('2026-09-08T23:59:00-06:00');
+      const now = new Date();
+      const ids = ['westjet-seat-sale-btn', 'aircanada-seat-sale-btn', 'porter-seat-sale-btn'];
+      ids.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (now >= expiryTime) {
+            btn.style.display = 'none';
+          } else {
+            const msUntilExpiry = expiryTime - now;
+            setTimeout(() => {
+              btn.style.display = 'none';
+            }, msUntilExpiry);
+          }
+        }
+      });
+    }
+    checkAirlineSeatSaleExpiry();
   </script>
 </body>
 </html>
