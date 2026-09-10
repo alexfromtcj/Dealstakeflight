@@ -414,6 +414,11 @@
       </div>
       <div id="credit-cards-content" class="collapsible-content open">
       <div class="lt-card-group">
+        <a id="td-aeroplan-visa-infinite-btn" class="lt-btn card-btn" href="https://dealstakeflight.finlywealth.com/credit-cards/rewards-calculator/td-aeroplan-visa-infinite" target="_blank" style="display:none">
+          <img src="card-images/td-aeroplan-visa-infinite.png" alt="TD Aeroplan Visa Infinite Card" class="card-img">
+          <span class="card-btn-text">Get the TD Aeroplan Visa Infinite</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a class="lt-btn card-btn" href="https://dealstakeflight.finlywealth.com/credit-cards/rewards-calculator/amex-aeroplan-reserve" target="_blank">
           <img src="card-images/amex-aeroplan-reserve.png" alt="American Express Aeroplan Reserve Card" class="card-img">
           <span class="card-btn-text">Get the American Express Aeroplan Reserve Card</span>
@@ -587,6 +592,23 @@
       }
     }
     checkVancouverSydneyExpiry();
+
+    function checkTDAeroplanVisibility() {
+      const showTime = new Date('2026-09-11T10:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('td-aeroplan-visa-infinite-btn');
+      if (btn) {
+        if (now >= showTime) {
+          btn.style.display = 'flex';
+        } else {
+          const msUntilShow = showTime - now;
+          setTimeout(() => {
+            btn.style.display = 'flex';
+          }, msUntilShow);
+        }
+      }
+    }
+    checkTDAeroplanVisibility();
 
   </script>
 </body>
