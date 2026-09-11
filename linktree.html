@@ -214,6 +214,26 @@
       margin-bottom: 16px;
     }
 
+    .lt-pill-link-btn {
+      height: 56px;
+      width: 100%;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #d6d6f0 0%, #6772bb 100%);
+      box-shadow: 0 4px 16px rgba(61,63,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
     .collapsible-content .lt-card-group {
       gap: 0;
     }
@@ -336,6 +356,10 @@
 
   <div class="lt-wrap">
     <div class="lt-inner">
+
+      <a id="cathay-pacific-btn" class="lt-pill-link-btn" href="https://www.cathaypacific.com/cx/en_CA/offers/80yearstogether/flight.html" target="_blank">
+        Cathay Pacific Birthday Deal <span aria-hidden="true">✈</span>
+      </a>
 
       <div class="accordion-section">
       <div class="accordion-wrapper domestic-sales-toggle">
@@ -631,6 +655,23 @@
       }
     }
     checkTDAeroplanPrivilegeVisibility();
+
+    function checkCathayPacificExpiry() {
+      const expiryTime = new Date('2026-09-23T23:59:00-06:00');
+      const now = new Date();
+      const btn = document.getElementById('cathay-pacific-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkCathayPacificExpiry();
 
   </script>
 </body>
