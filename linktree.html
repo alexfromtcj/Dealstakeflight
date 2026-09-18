@@ -402,6 +402,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="vancouver-seoul-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpLEgoyMDI2LTEwLTE5Ih8KA1lWUhIKMjAyNi0xMC0xORoDSUNOKgJUVzIDNTMyKABqDAgDEggvbS8wODBoMnIMCAISCC9tLzBoc3FmGksSCjIwMjYtMTAtMzEiHwoDSUNOEgoyMDI2LTEwLTMxGgNZVlIqAlRXMgM1MzEoAGoMCAISCC9tLzBoc3FmcgwIAxIIL20vMDgwaDJAAUgBYIQHcAGCAQsI____________AZgBAQ" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Vancouver to Seoul</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="toronto-mumbai-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhptEgoyMDI3LTAzLTEwIh4KA1lZWhIKMjAyNy0wMy0xMBoDQVVIKgJFWTICMjIiHwoDQVVIEgoyMDI3LTAzLTExGgNCT00qAkVZMgMyMDQyAkVZagwIAxIIL20vMGg3aDZyDAgCEggvbS8wNHZtcBptEgoyMDI3LTAzLTIyIh8KA0JPTRIKMjAyNy0wMy0yMhoDQVVIKgJFWTIDMjA1Ih4KA0FVSBIKMjAyNy0wMy0yMxoDWVlaKgJFWTICMjEyAkVZagwIAhIIL20vMDR2bXByDAgDEggvbS8waDdoNkABSANwAYIBCwj___________8BmAEB&tfu=CnRDalJJU0dNd1ZrWTJjMEZmZGpSQlFVTnBjRUZDUnkwdExTMHRMUzB0TFhCbVltUnpNa0ZCUVVGQlIzRnpZVXRWUVZkaE5FTkJFZ3BGV1RJd05YeEZXVEl4R2dzSWxNSVZFQUlhQTBOQlJEZ2NjTit3RHc9PRICCAAiAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Mumbai</span>
           <span class="btn-arrow">→</span>
@@ -723,6 +727,23 @@
       }
     }
     checkTorontoMumbaiExpiry();
+
+    function checkVancouverSeoulExpiry() {
+      const expiryTime = new Date('2026-09-24T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('vancouver-seoul-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkVancouverSeoulExpiry();
 
   </script>
 </body>
