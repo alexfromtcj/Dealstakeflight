@@ -402,6 +402,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="toronto-danang-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI3LTAxLTE3agwIAxIIL20vMGg3aDZyDQgCEgkvbS8wMjZ5cWYaKRIKMjAyNy0wMS0zMGoNCAISCS9tLzAyNnlxZnIMCAMSCC9tLzBoN2g2QAFIAXABggELCP___________wGYAQE&tfu=EgIIACIA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Da Nang</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="vancouver-seoul-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpLEgoyMDI2LTEwLTE5Ih8KA1lWUhIKMjAyNi0xMC0xORoDSUNOKgJUVzIDNTMyKABqDAgDEggvbS8wODBoMnIMCAISCC9tLzBoc3FmGksSCjIwMjYtMTAtMzEiHwoDSUNOEgoyMDI2LTEwLTMxGgNZVlIqAlRXMgM1MzEoAGoMCAISCC9tLzBoc3FmcgwIAxIIL20vMDgwaDJAAUgBYIQHcAGCAQsI____________AZgBAQ" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Vancouver to Seoul</span>
           <span class="btn-arrow">→</span>
@@ -744,6 +748,23 @@
       }
     }
     checkVancouverSeoulExpiry();
+
+    function checkTorontoDaNangExpiry() {
+      const expiryTime = new Date('2026-09-26T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('toronto-danang-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkTorontoDaNangExpiry();
 
   </script>
 </body>
