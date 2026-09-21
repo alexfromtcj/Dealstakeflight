@@ -357,6 +357,35 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
+      <div class="accordion-section">
+      <div class="accordion-wrapper canadian-airline-sales-toggle open">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Canadian Airline Flight Sales</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
+      </div>
+      <div id="canadian-airline-sales-content" class="collapsible-content open">
+      <div class="lt-card-group">
+        <a id="westjet-flight-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.westjet.com/en-ca/deals?i_cid=wj:wj-hp:hero1:ss-wj:15-discount-sale&#id-6A7C634050D80D9B2E4E3CB3D7C690F641CFFBE5DE94C3A121C8CF172B2E5DB0-tab-0" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ WestJet Flight Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="aircanada-flight-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:MatchSale:PRJNE4189:URL4905::HPsalebanner#ntp15percent-modal" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Canada Flight Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="porter-flight-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=PIZS5I" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Porter Flight Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="airtransat-flight-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.airtransat.com/en-CA/deals/seat-sale?ici=homepage&icn=showbox_promo-sept-2026&search=flight&flightType=RT&gateway=AIRPORT_YWG&pax=1-0-0-0-0" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Transat Flight Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+      </div>
+      </div>
+
       <a id="aeroplan-promo-btn" class="lt-pill-link-btn" href="https://buy.points.com/marketing/aeroplan_kilo/index.html?mv=7125f122721c31b2b1ba5be0b484cc7560a14073a261cdcbbe802593b467bc6eb67d6fd508806419f55f6dca15b082507f1685b1c9e898141ec8fc9003e64bc9cfbabd08d8999162071788469066a6c0e655d4f81f0f3e1ab3118e57cd2842f1eda8b86928056e2d48fb58fc4aaacd1a6c475e92e3576be6057b4481260846028b09eb5456747ee4392ccd#/en-CA" target="_blank">
         Aeroplan Promotion
       </a>
@@ -575,6 +604,7 @@
       })
     }
 
+    initAccordion('canadian-airline-sales-toggle', 'canadian-airline-sales-content')
     initAccordion('domestic-sales-toggle', 'domestic-sales-content')
     initAccordion('international-sales-toggle', 'international-sales-content')
     initAccordion('credit-cards-toggle', 'credit-cards-content')
@@ -765,6 +795,35 @@
       }
     }
     checkTorontoDaNangExpiry();
+
+    function checkCanadianAirlineSaleExpiry() {
+      const expiryWestJet = new Date('2026-09-22T23:59:00-06:00');
+      const expiryAirCanada = new Date('2026-09-22T23:59:00-06:00');
+      const expiryPorter = new Date('2026-09-22T23:59:00-06:00');
+      const expiryAirTransat = new Date('2026-09-21T23:59:00-06:00');
+
+      const buttons = [
+        { id: 'westjet-flight-sale-btn', expiry: expiryWestJet },
+        { id: 'aircanada-flight-sale-btn', expiry: expiryAirCanada },
+        { id: 'porter-flight-sale-btn', expiry: expiryPorter },
+        { id: 'airtransat-flight-sale-btn', expiry: expiryAirTransat },
+      ];
+
+      const now = new Date();
+      buttons.forEach(({ id, expiry }) => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (now >= expiry) {
+            btn.style.display = 'none';
+          } else {
+            setTimeout(() => {
+              btn.style.display = 'none';
+            }, expiry - now);
+          }
+        }
+      });
+    }
+    checkCanadianAirlineSaleExpiry();
 
   </script>
 </body>
