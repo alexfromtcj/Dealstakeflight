@@ -431,6 +431,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="calgary-mexico-city-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhprEgoyMDI3LTAxLTExIiAKA1lZQxIKMjAyNy0wMS0xMRoDU0ZPKgJVQTIEMjQwOSIfCgNTRk8SCjIwMjctMDEtMTEaA01FWCoCVUEyAzQxMmoMCAMSCC9tLzAxcjMycgwIAxIIL20vMDRzcWoaKBIKMjAyNy0wMS0yNWoMCAMSCC9tLzA0c3FqcgwIAxIIL20vMDFyMzJAAUgBcAGCAQsI____________AZgBAQ&tfu=CnRDalJJY0VFd0xUZzVWRzFtTUhOQlFWRm5PVUZDUnkwdExTMHRMUzB0YjJ0aWEzY3lOa0ZCUVVGQlIzRjVlVUV3UjJsdGNHdEJFZ3hWVVRJME1EbDhWVUUwTVRJYUN3anlnZ01RQWhvRFEwRkVPQnh3KzVJQxIGCAAgASgCIgA&hl=en&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Calgary to Mexico City</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="toronto-danang-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI3LTAxLTE3agwIAxIIL20vMGg3aDZyDQgCEgkvbS8wMjZ5cWYaKRIKMjAyNy0wMS0zMGoNCAISCS9tLzAyNnlxZnIMCAMSCC9tLzBoN2g2QAFIAXABggELCP___________wGYAQE&tfu=EgIIACIA&hl=en-US&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Da Nang</span>
           <span class="btn-arrow">→</span>
@@ -795,6 +799,23 @@
       }
     }
     checkTorontoDaNangExpiry();
+
+    function checkCalgaryMexicoCityExpiry() {
+      const expiryTime = new Date('2026-09-29T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('calgary-mexico-city-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkCalgaryMexicoCityExpiry();
 
     function checkCanadianAirlineSaleExpiry() {
       const expiryWestJet = new Date('2026-09-22T23:59:00-06:00');
