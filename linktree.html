@@ -370,6 +370,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="vancouver-hanoi-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpzEgoyMDI3LTAyLTIwIh8KA1lWUhIKMjAyNy0wMi0yMBoDQ0FOKgJDWjIDMzMwIiAKA0NBThIKMjAyNy0wMi0yMRoDSEFOKgJDWjIEODMxNToCUzQ6Ak1TagwIAxIIL20vMDgwaDJyDAgCEggvbS8wZm5mZhpzEgoyMDI3LTAzLTA2IiAKA0hBThIKMjAyNy0wMy0wNhoDQ0FOKgJDWjIEODE3OCIfCgNDQU4SCjIwMjctMDMtMDcaA1lWUioCQ1oyAzMyOToCUzQ6Ak1TagwIAhIIL20vMGZuZmZyDAgDEggvbS8wODBoMkABSAFwAYIBCwj___________8BmAEB&tfu=CnRDalJJVkZWdVVrTndiMTlaU2sxQlFuRktTV2RDUnkwdExTMHRMUzB0YjJ0aVltY3lOa0ZCUVVGQlIzRXdZbU5OVEUxT01VZEJFZ3hEV2pneE43aDhRMW96TWprYUN3alhwZ1FRQWhvRFEwRkVPQnh3dW9ZRBICCAAiAwoBMQ&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Vancouver to Hanoi</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="calgary-mexico-city-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhprEgoyMDI3LTAxLTExIiAKA1lZQxIKMjAyNy0wMS0xMRoDU0ZPKgJVQTIEMjQwOSIfCgNTRk8SCjIwMjctMDEtMTEaA01FWCoCVUEyAzQxMmoMCAMSCC9tLzAxcjMycgwIAxIIL20vMDRzcWoaKBIKMjAyNy0wMS0yNWoMCAMSCC9tLzA0c3FqcgwIAxIIL20vMDFyMzJAAUgBcAGCAQsI____________AZgBAQ&tfu=CnRDalJJY0VFd0xUZzVWRzFtTUhOQlFWRm5PVUZDUnkwdExTMHRMUzB0YjJ0aWEzY3lOa0ZCUVVGQlIzRjVlVUV3UjJsdGNHdEJFZ3hWVVRJME1EbDhWVUUwTVRJYUN3anlnZ01RQWhvRFEwRkVPQnh3KzVJQxIGCAAgASgCIgA&hl=en&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Calgary to Mexico City</span>
           <span class="btn-arrow">→</span>
@@ -642,6 +646,23 @@
       }
     }
     checkCalgaryMexicoCityExpiry();
+
+    function checkVancouverHanoiExpiry() {
+      const expiryTime = new Date('2026-09-29T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('vancouver-hanoi-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkVancouverHanoiExpiry();
 
   </script>
 </body>
