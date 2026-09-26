@@ -370,6 +370,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="toronto-new-delhi-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhppEgoyMDI3LTA0LTAxIh4KA1lZWhIKMjAyNy0wNC0wMRoDQVVIKgJFWTICMjIiHwoDQVVIEgoyMDI3LTA0LTAyGgNERUwqAkVZMgMyMTZqDAgDEggvbS8waDdoNnIMCAISCC9tLzBkbHYwGmkSCjIwMjctMDQtMTQiHwoDREVMEgoyMDI3LTA0LTE0GgNBVUgqAkVZMgMyMTMiHgoDQVVIEgoyMDI3LTA0LTE1GgNZWVoqAkVZMgIyMWoMCAISCC9tLzBkbHYwcgwIAxIIL20vMGg3aDZAAUgDcAGCAQsI____________AZgBAQ&tfu=CnRDalJJYUc1U05rcDJjRlJrZDNOQlNIWmllbWRDUnkwdExTMHRMUzB0TFc5NVkyZG5PVUZCUVVGQlIzRXlYMXB6VDJSVGMwZEJFZ3BGV1RJeE0zeEZXVEl4R2dzSTBPOFZFQUlhQTBOQlJEZ2NjS2U3RHc5ORICCAAiAwoBMQ&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to New Delhi</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="vancouver-hanoi-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpzEgoyMDI3LTAyLTIwIh8KA1lWUhIKMjAyNy0wMi0yMBoDQ0FOKgJDWjIDMzMwIiAKA0NBThIKMjAyNy0wMi0yMRoDSEFOKgJDWjIEODMxNToCUzQ6Ak1TagwIAxIIL20vMDgwaDJyDAgCEggvbS8wZm5mZhpzEgoyMDI3LTAzLTA2IiAKA0hBThIKMjAyNy0wMy0wNhoDQ0FOKgJDWjIEODE3OCIfCgNDQU4SCjIwMjctMDMtMDcaA1lWUioCQ1oyAzMyOToCUzQ6Ak1TagwIAhIIL20vMGZuZmZyDAgDEggvbS8wODBoMkABSAFwAYIBCwj___________8BmAEB&tfu=CnRDalJJVkZWdVVrTndiMTlaU2sxQlFuRktTV2RDUnkwdExTMHRMUzB0YjJ0aVltY3lOa0ZCUVVGQlIzRXdZbU5OVEUxT01VZEJFZ3hEV2pneE43aDhRMW96TWprYUN3alhwZ1FRQWhvRFEwRkVPQnh3dW9ZRBICCAAiAwoBMQ&hl=en-US&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Vancouver to Hanoi</span>
           <span class="btn-arrow">→</span>
@@ -663,6 +667,23 @@
       }
     }
     checkVancouverHanoiExpiry();
+
+    function checkTorontoNewDelhiExpiry() {
+      const expiryTime = new Date('2026-09-29T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('toronto-new-delhi-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkTorontoNewDelhiExpiry();
 
   </script>
 </body>
