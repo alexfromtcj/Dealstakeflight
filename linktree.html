@@ -357,6 +357,10 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
+      <a id="marriott-aeroplan-btn" class="lt-pill-link-btn" href="https://www.marriott.com/loyalty/redeem/travel/points-to-miles.mi" target="_blank">
+        Marriott to Aeroplan Transfer Bonus
+      </a>
+
       <a id="aeroplan-promo-btn" class="lt-pill-link-btn" href="https://buy.points.com/marketing/aeroplan_kilo/index.html?mv=7125f122721c31b2b1ba5be0b484cc7560a14073a261cdcbbe802593b467bc6eb67d6fd508806419f55f6dca15b082507f1685b1c9e898141ec8fc9003e64bc9cfbabd08d8999162071788469066a6c0e655d4f81f0f3e1ab3118e57cd2842f1eda8b86928056e2d48fb58fc4aaacd1a6c475e92e3576be6057b4481260846028b09eb5456747ee4392ccd#/en-CA" target="_blank">
         Aeroplan Promotion
       </a>
@@ -689,6 +693,23 @@
       }
     }
     checkTorontoTurksCaicosExpiry();
+
+    function checkMarriottAeroplanExpiry() {
+      const expiryTime = new Date('2026-10-31T23:59:00-06:00');
+      const now = new Date();
+      const btn = document.getElementById('marriott-aeroplan-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkMarriottAeroplanExpiry();
 
   </script>
 </body>
