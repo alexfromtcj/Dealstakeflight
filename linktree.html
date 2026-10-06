@@ -704,23 +704,6 @@
     }
     checkTorontoTurksCaicosExpiry();
 
-    function checkMarriottAeroplanExpiry() {
-      const expiryTime = new Date('2026-10-31T23:59:00-06:00');
-      const now = new Date();
-      const btn = document.getElementById('marriott-aeroplan-btn');
-      if (btn) {
-        if (now >= expiryTime) {
-          btn.style.display = 'none';
-        } else {
-          const msUntilExpiry = expiryTime - now;
-          setTimeout(() => {
-            btn.style.display = 'none';
-          }, msUntilExpiry);
-        }
-      }
-    }
-    checkMarriottAeroplanExpiry();
-
   </script>
 </body>
 </html>
