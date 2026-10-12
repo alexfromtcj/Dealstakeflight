@@ -406,6 +406,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="toronto-saint-martin-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI3LTAxLTExagwIAxIIL20vMGg3aDZyDQgDEgkvbS8wMTFodm4aKRIKMjAyNy0wMS0xOGoNCAMSCS9tLzAxMWh2bnIMCAMSCC9tLzBoN2g2QAFIAXABggELCP___________8BmAEB&tfu=EgIIACIA&hl=en&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Saint Martin</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="toronto-melbourne-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhqGARIKMjAyNi0xMC0yNyIgCgNZWVoSCjIwMjYtMTAtMjcaA0RUVyoCREwyBDQ5NzgiHwoDRFRXEgoyMDI2LTEwLTI3GgNMQVgqAkRMMgM4NTIiHgoDTEFYEgoyMDI2LTEwLTI3GgNNRUwqAkRMMgIxMWoMCAMSCC9tLzBoN2g2cgcIARIDTUVMGiMSCjIwMjYtMTEtMDNqBwgBEgNNRUxyDAgDEggvbS8waDdoNkABSAFwAYIBCwj___________8BmAEB&tfu=CnxDalJJVEhOeWVGVmFSMDFXVDBGQlRtWk5Xa0ZDUnkwdExTMHRMUzB0TFMwdGIzbGlPRUZCUVVGQlIzSkxaRk0wUzFSZlFUUkJFaEZFVERRNU56aDhSRXc0TlRKOFJFd3hNUm9MQ0xyd0J4QUNHZ05EUVVRNEhIRDh3Z1U5EgIIACIA&hl=en&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Melbourne</span>
           <span class="btn-arrow">→</span>
@@ -751,6 +755,23 @@
       }
     }
     checkTorontoMelbourneExpiry();
+
+    function checkTorontoSaintMartinExpiry() {
+      const expiryTime = new Date('2026-10-19T00:00:00-05:00');
+      const now = new Date();
+      const btn = document.getElementById('toronto-saint-martin-btn');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+        } else {
+          const msUntilExpiry = expiryTime - now;
+          setTimeout(() => {
+            btn.style.display = 'none';
+          }, msUntilExpiry);
+        }
+      }
+    }
+    checkTorontoSaintMartinExpiry();
 
   </script>
 </body>
