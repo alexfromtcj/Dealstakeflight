@@ -357,6 +357,39 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
+      <div class="accordion-section">
+      <div class="accordion-wrapper canadian-sales-toggle open">
+        <div class="accordion-toggle">
+          <span class="accordion-title">Canadian Airline Sales</span>
+        </div>
+        <div class="accordion-knob"><i class="fa-solid fa-plane accordion-plane-icon"></i></div>
+      </div>
+      <div id="canadian-sales-content" class="collapsible-content open">
+      <div class="lt-card-group">
+        <a id="porter-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-discount-sale?promocode=NI4O5D" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Porter Seat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="aircanada-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.aircanada.com/en-ca/?acid=INT:ACO:SunSale2026_Oct26:PRJAC40000216:URL4991:salesbanner" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Canada Sun Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="westjet-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.westjet.com/en-ca/deals?i_cid=wj:wj-hp:hero1:ss-wj:pc-sale&amp;#id-6A7C634050D80D9B2E4E3CB3D7C690F641CFFBE5DE94C3A121C8CF172B2E5DB0-tab-0" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ WestJet Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="flair-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://flights.flyflair.com/en-ca/winter-sun-sale" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Flair Winter Sun Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="airtransat-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.airtransat.com/en-CA/deals/promo-code?ici=homepage&icn=showbox_promocode-15-oct-2026&search=flight&flightType=RT&gateway=AIRPORT_YWG&pax=1-0-0-0-0" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Air Transat Sale</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+      </div>
+      </div>
+
       <a href="https://www.amazon.ca/shop/dealstakeflight/list/3V73KDBOS8RMK?tag=dealstakefl04-20&ref_=aip_sf_list_spv_ofs_mixed_d&ccs_id=bc08bceb-a55f-4677-8362-42cba5316182"
          id="amazon-favourites-btn"
          target="_blank"
@@ -571,6 +604,7 @@
       })
     }
 
+    initAccordion('canadian-sales-toggle', 'canadian-sales-content')
     initAccordion('international-sales-toggle', 'international-sales-content')
     initAccordion('credit-cards-toggle', 'credit-cards-content')
 
@@ -777,6 +811,32 @@
       }
     }
     checkTorontoSaintMartinExpiry();
+
+    function checkCanadianAirlineOctSaleExpiry() {
+      const now = new Date();
+
+      const expiryMap = {
+        'flair-oct-sale-btn':      new Date('2026-10-15T23:59:00-06:00'),
+        'airtransat-oct-sale-btn': new Date('2026-10-15T23:59:00-06:00'),
+        'aircanada-oct-sale-btn':  new Date('2026-10-16T00:00:00-06:00'),
+        'porter-oct-sale-btn':     new Date('2026-10-19T00:00:00-06:00'),
+        'westjet-oct-sale-btn':    new Date('2026-10-19T00:00:00-06:00'),
+      };
+
+      Object.entries(expiryMap).forEach(([id, expiry]) => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (now >= expiry) {
+            btn.style.display = 'none';
+          } else {
+            setTimeout(() => {
+              btn.style.display = 'none';
+            }, expiry - now);
+          }
+        }
+      });
+    }
+    checkCanadianAirlineOctSaleExpiry();
 
   </script>
 </body>
