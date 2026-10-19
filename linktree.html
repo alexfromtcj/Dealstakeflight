@@ -357,7 +357,7 @@
   <div class="lt-wrap">
     <div class="lt-inner">
 
-      <div class="accordion-section">
+      <div id="canadian-airline-sales-section" class="accordion-section">
       <div class="accordion-wrapper canadian-sales-toggle">
         <div class="accordion-toggle">
           <span class="accordion-title">Canadian Airline Sales</span>
@@ -366,6 +366,10 @@
       </div>
       <div id="canadian-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="porter-30-off-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-sale?promocode=HBD2PD" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Porter 30% Off</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="porter-oct-sale-btn" class="lt-btn lt-btn-current-sale" href="https://www.flyporter.com/en-ca/special-offers/seat-discount-sale?promocode=NI4O5D" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Porter Seat Sale</span>
           <span class="btn-arrow">→</span>
@@ -888,6 +892,25 @@
       });
     }
     checkManilaFlightsExpiry();
+
+    function checkPorter30OffExpiry() {
+      const expiryTime = new Date('2026-10-23T00:00:00-06:00');
+      const now = new Date();
+      const btn = document.getElementById('porter-30-off-btn');
+      const section = document.getElementById('canadian-airline-sales-section');
+      if (btn) {
+        if (now >= expiryTime) {
+          btn.style.display = 'none';
+          if (section) section.style.display = 'none';
+        } else {
+          setTimeout(() => {
+            btn.style.display = 'none';
+            if (section) section.style.display = 'none';
+          }, expiryTime - now);
+        }
+      }
+    }
+    checkPorter30OffExpiry();
 
   </script>
 </body>
