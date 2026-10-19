@@ -459,6 +459,18 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="vancouver-manila-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI3LTAzLTEwKABqDAgDEggvbS8wODBoMnINCAISCS9tLzAxOTVwZBorEgoyMDI3LTAzLTI0KABqDQgCEgkvbS8wMTk1cGRyDAgDEggvbS8wODBoMkABSAFwAYIBCwj___________8BmAEB&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Vancouver to Manila</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="toronto-manila-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpsEgoyMDI3LTAzLTA4Ih8KA1lZWhIKMjAyNy0wMy0wOBoDWVZSKgJBQzIDMTI1Ih4KA1lWUhIKMjAyNy0wMy0wORoDTU5MKgJBQzICMTcoAWoMCAMSCC9tLzBoN2g2cg0IAhIJL20vMDE5NXBkGmwSCjIwMjctMDMtMjIiHwoDTU5MEgoyMDI3LTAzLTIyGgNJQ04qAk9aMgM3MDQiHgoDSUNOEgoyMDI3LTAzLTIzGgNZWVoqAkFDMgI2MigBag0IAhIJL20vMDE5NXBkcgwIAxIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&tfu=CnRDalJJTldWb01tUk1iRlJhZGxGQlZYbHlhMUZDUnkwdExTMHRMUzB0TFMwdGIzbG1PVUZCUVVGQlIzSkxaVzFqUVd4VGRVRkJFZ3BQV2pjd05IeEJRell5R2dzSW1wQUhFQUlhQTBOQlJEZ2NjT21HQlE1ORICCAAiAwoBMA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Manila</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a id="winnipeg-manila-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/booking?tfs=CBwQAhpnEgoyMDI3LTAzLTA5Ih8KA1lXRxIKMjAyNy0wMy0wORoDWVZSKgJBQzIDMjk5Ih4KA1lWUhIKMjAyNy0wMy0xMBoDTU5MKgJBQzICMTcoAWoHCAESA1lXR3INCAISCS9tLzAxOTVwZBpnEgoyMDI3LTAzLTIzIh4KA01OTBIKMjAyNy0wMy0yMxoDWVZSKgJBQzICMTgiHwoDWVZSEgoyMDI3LTAzLTIzGgNZV0cqAkFDMgMyOTIoAWoNCAISCS9tLzAxOTVwZHIHCAESA1lXR0ABSAFwAYIBCwj___________8BmAEB&tfu=CnRDalJJVVdKNk5rUlNTREZZYlhOQlZWQjNjM2RDUnkwdExTMHRMUzB0TFc5cmNtTXhPVUZCUVVGQlIzSkxaVzFCU0hZNFRFZEJFZ3BCUXpFNGZFRkRNamt5R2dzSWhJY0lFQUlhQTBOQlJEZ2NjSXJiQlE1ORICCAAiAwoBMA&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Winnipeg to Manila</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="toronto-saint-martin-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI3LTAxLTExagwIAxIIL20vMGg3aDZyDQgDEgkvbS8wMTFodm4aKRIKMjAyNy0wMS0xOGoNCAMSCS9tLzAxMWh2bnIMCAMSCC9tLzBoN2g2QAFIAXABggELCP___________8BmAEB&tfu=EgIIACIA&hl=en&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Saint Martin</span>
           <span class="btn-arrow">→</span>
@@ -857,6 +869,25 @@
       });
     }
     checkCanadianAirlineOctSaleExpiry();
+
+    function checkManilaFlightsExpiry() {
+      const expiryTime = new Date('2026-10-26T00:00:00-05:00');
+      const now = new Date();
+      const ids = ['vancouver-manila-btn', 'toronto-manila-btn', 'winnipeg-manila-btn'];
+      ids.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (now >= expiryTime) {
+            btn.style.display = 'none';
+          } else {
+            setTimeout(() => {
+              btn.style.display = 'none';
+            }, expiryTime - now);
+          }
+        }
+      });
+    }
+    checkManilaFlightsExpiry();
 
   </script>
 </body>
