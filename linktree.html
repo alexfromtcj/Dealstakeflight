@@ -371,7 +371,7 @@
         ✈ Porter 30% Off
       </a>
 
-      <div class="accordion-section" style="display:none">
+      <div id="international-flight-sales-section" class="accordion-section">
       <div class="accordion-wrapper international-sales-toggle">
         <div class="accordion-toggle">
           <span class="accordion-title">International Flight Sales</span>
@@ -380,6 +380,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="calgary-seoul-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhowEgoyMDI3LTA0LTExOgJTNDoCTVNqDAgDEggvbS8wMXIzMnIMCAMSCC9tLzBoc3FmGjASCjIwMjctMDQtMjY6AlM0OgJNU2oMCAMSCC9tLzBoc3FmcgwIAxIIL20vMDFyMzJAAUgBcAGCAQsI____________AZgBAQ&tfu=EgoIABAAGAAgASgC&hl=en-US&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Calgary to Seoul</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="vancouver-manila-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI3LTAzLTEwKABqDAgDEggvbS8wODBoMnINCAISCS9tLzAxOTVwZBorEgoyMDI3LTAzLTI0KABqDQgCEgkvbS8wMTk1cGRyDAgDEggvbS8wODBoMkABSAFwAYIBCwj___________8BmAEB&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Vancouver to Manila</span>
           <span class="btn-arrow">→</span>
@@ -862,6 +866,25 @@
       }
     }
     checkPorter30OffExpiry();
+
+    function checkCalgarySeoulExpiry() {
+      const expiryTime = new Date('2026-11-10T00:00:00-06:00');
+      const now = new Date();
+      const btn = document.getElementById('calgary-seoul-btn');
+      const section = document.getElementById('international-flight-sales-section');
+      const hide = () => {
+        if (btn) btn.style.display = 'none';
+        if (section) section.style.display = 'none';
+      };
+      if (btn) {
+        if (now >= expiryTime) {
+          hide();
+        } else {
+          setTimeout(hide, expiryTime - now);
+        }
+      }
+    }
+    checkCalgarySeoulExpiry();
 
   </script>
 </body>
