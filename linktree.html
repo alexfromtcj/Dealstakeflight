@@ -380,12 +380,8 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
-        <a id="toronto-reykjavik-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhooEgoyMDI3LTAyLTA1agwIAxIIL20vMGg3aDZyDAgDEggvbS8wNmZsZxooEgoyMDI3LTAyLTE0agwIAxIIL20vMDZmbGdyDAgDEggvbS8waDdoNkABSAFwAYIBCwj___________8BmAEB&hl=en&gl=CA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Toronto to Reykjavik</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <a id="calgary-seoul-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhowEgoyMDI3LTA0LTExOgJTNDoCTVNqDAgDEggvbS8wMXIzMnIMCAMSCC9tLzBoc3FmGjASCjIwMjctMDQtMjY6AlM0OgJNU2oMCAMSCC9tLzBoc3FmcgwIAxIIL20vMDFyMzJAAUgBcAGCAQsI____________AZgBAQ&tfu=EgoIABAAGAAgASgC&hl=en-US&gl=CA" target="_blank" rel="noopener">
-          <span class="lt-btn-current-sale-text">✈ Calgary to Seoul</span>
+        <a id="toronto-tokyo-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI3LTA2LTAzKABqDAgCEggvbS8waDdoNnIMCAISCC9tLzA3ZGZrGioSCjIwMjctMDYtMTcoAGoMCAISCC9tLzA3ZGZrcgwIAhIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&hl=en&gl=CA" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Tokyo</span>
           <span class="btn-arrow">→</span>
         </a>
         <a id="vancouver-manila-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhorEgoyMDI3LTAzLTEwKABqDAgDEggvbS8wODBoMnINCAISCS9tLzAxOTVwZBorEgoyMDI3LTAzLTI0KABqDQgCEgkvbS8wMTk1cGRyDAgDEggvbS8wODBoMkABSAFwAYIBCwj___________8BmAEB&tfu=EgYIABAAGAA&hl=en-US&gl=CA" target="_blank" rel="noopener">
@@ -871,27 +867,10 @@
     }
     checkPorter30OffExpiry();
 
-    function checkCalgarySeoulExpiry() {
-      const expiryTime = new Date('2026-11-10T00:00:00-06:00');
+    function checkTorontoTokyoExpiry() {
+      const expiryTime = new Date('2026-11-21T00:00:00-06:00');
       const now = new Date();
-      const btn = document.getElementById('calgary-seoul-btn');
-      const hide = () => {
-        if (btn) btn.style.display = 'none';
-      };
-      if (btn) {
-        if (now >= expiryTime) {
-          hide();
-        } else {
-          setTimeout(hide, expiryTime - now);
-        }
-      }
-    }
-    checkCalgarySeoulExpiry();
-
-    function checkTorontoReykjavikExpiry() {
-      const expiryTime = new Date('2026-11-12T00:00:00-06:00');
-      const now = new Date();
-      const btn = document.getElementById('toronto-reykjavik-btn');
+      const btn = document.getElementById('toronto-tokyo-btn');
       const section = document.getElementById('international-flight-sales-section');
       const hide = () => {
         if (btn) btn.style.display = 'none';
@@ -905,7 +884,7 @@
         }
       }
     }
-    checkTorontoReykjavikExpiry();
+    checkTorontoTokyoExpiry();
 
   </script>
 </body>
