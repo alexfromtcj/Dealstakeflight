@@ -380,6 +380,10 @@
       </div>
       <div id="international-sales-content" class="collapsible-content">
       <div class="lt-card-group">
+        <a id="toronto-zurich-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.ca/travel/flights/booking?tfs=CBwQAhpjEgoyMDI3LTA0LTAyIh8KA1lZWhIKMjAyNy0wNC0wMhoDS0VGKgJGSTIDNjAyIh8KA0tFRhIKMjAyNy0wNC0wMxoDWlJIKgJGSTIDNTY4YIwGagcIARIDWVlacgcIARIDWlJIGmMSCjIwMjctMDQtMTMiHwoDWlJIEgoyMDI3LTA0LTEzGgNLRUYqAkZJMgM1NjkiHwoDS0VGEgoyMDI3LTA0LTEzGgNZWVoqAkZJMgM2MDNgjAZqBwgBEgNaUkhyBwgBEgNZWVpAAUgBcAGCAQsI____________AZgBAQ&tfu=CnRDalJJU0dGUVpWZFBWRzQ1VFdOQlEyVnZZMEZDUnkwdExTMHRMUzB0YjJ0aWFYa3pOVUZCUVVGQlIzSmZUMlZSUkZKdVEyZEJFZ3RHU1RVMk9YeEdTVFl3TXhvTENMbjVBaEFDR2dORFFVUTRISERQaHdJPRIGCAAgAigFIgA&curr=CAD" target="_blank" rel="noopener">
+          <span class="lt-btn-current-sale-text">✈ Toronto to Zurich</span>
+          <span class="btn-arrow">→</span>
+        </a>
         <a id="toronto-tokyo-btn" class="lt-btn lt-btn-current-sale" href="https://www.google.com/travel/flights/search?tfs=CBwQAhoqEgoyMDI3LTA2LTAzKABqDAgCEggvbS8waDdoNnIMCAISCC9tLzA3ZGZrGioSCjIwMjctMDYtMTcoAGoMCAISCC9tLzA3ZGZrcgwIAhIIL20vMGg3aDZAAUgBcAGCAQsI____________AZgBAQ&hl=en&gl=CA" target="_blank" rel="noopener">
           <span class="lt-btn-current-sale-text">✈ Toronto to Tokyo</span>
           <span class="btn-arrow">→</span>
@@ -837,6 +841,23 @@
       const expiryTime = new Date('2026-11-21T00:00:00-06:00');
       const now = new Date();
       const btn = document.getElementById('toronto-tokyo-btn');
+      const hide = () => {
+        if (btn) btn.style.display = 'none';
+      };
+      if (btn) {
+        if (now >= expiryTime) {
+          hide();
+        } else {
+          setTimeout(hide, expiryTime - now);
+        }
+      }
+    }
+    checkTorontoTokyoExpiry();
+
+    function checkTorontoZurichExpiry() {
+      const expiryTime = new Date('2026-11-26T00:00:00-06:00');
+      const now = new Date();
+      const btn = document.getElementById('toronto-zurich-btn');
       const section = document.getElementById('international-flight-sales-section');
       const hide = () => {
         if (btn) btn.style.display = 'none';
@@ -850,7 +871,7 @@
         }
       }
     }
-    checkTorontoTokyoExpiry();
+    checkTorontoZurichExpiry();
 
   </script>
 </body>
